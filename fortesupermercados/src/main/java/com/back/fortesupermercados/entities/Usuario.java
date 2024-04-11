@@ -1,8 +1,11 @@
 package com.back.fortesupermercados.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -26,4 +29,6 @@ public class Usuario {
     private Endereco endereco;
     @OneToOne
     private Carrinho carrinho;
+    @OneToMany
+    private List<Pedido> pedidos;
 }

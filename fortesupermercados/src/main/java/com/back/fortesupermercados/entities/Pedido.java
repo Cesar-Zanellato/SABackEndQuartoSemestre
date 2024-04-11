@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -21,8 +20,6 @@ public class Pedido {
     private Long id;
     @OneToOne
     private Carrinho carrinho;
-    @OneToMany
-    private Usuario usuario;
     private LocalDateTime dataCriacao;
     private String horaEntrega;
     @Enumerated(EnumType.STRING)

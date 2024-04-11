@@ -1,5 +1,7 @@
 package com.back.fortesupermercados.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -12,8 +14,8 @@ public class Carrinho {
 
     @Id
     private Long id;
-    @ManyToMany
-    private Produto produtos;
+    @ManyToMany(mappedBy = "carrinho")
+    private List<Produto> produtos;
     private Float precoUnitario; 
     private Float precoTotal;
     private Float taxaEntrega;
