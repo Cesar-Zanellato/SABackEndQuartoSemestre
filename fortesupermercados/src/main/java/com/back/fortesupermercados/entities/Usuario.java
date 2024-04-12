@@ -2,9 +2,11 @@ package com.back.fortesupermercados.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
@@ -25,8 +27,8 @@ public class Usuario {
     private String cpf;
     @Column(length = 26)
     private String senha;
-    @OneToOne
-    private Endereco endereco;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Endereco> endereco;
     @OneToOne
     private Carrinho carrinho;
     @OneToMany
