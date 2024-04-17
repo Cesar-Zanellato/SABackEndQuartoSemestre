@@ -13,16 +13,17 @@ import lombok.NoArgsConstructor;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Produto {
-    @Id
+    @Id 
     private Long id;
     @Column(length = 255)
     private String nome;
     private String valorVenda; 
-    private String promocao;
-    private Integer estoque; 
-    private String imagem;
     private String valorCompra;
     private String valorLucro;
+    
+    private String promocao;
+    private Integer estoque;
+    private String imagem;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
     // @Enumerated(EnumType.STRING) 
