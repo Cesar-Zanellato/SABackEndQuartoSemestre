@@ -3,6 +3,7 @@ package com.back.fortesupermercados.entities;
 import java.time.LocalDateTime;
 
 import com.back.fortesupermercados.entities.enums.Status;
+import com.back.fortesupermercados.entities.enums.TaxaEntrega;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,6 +23,8 @@ public class Pedido {
     private Carrinho carrinho;
     private LocalDateTime dataCriacao;
     private String horaEntrega;
+    @Enumerated(EnumType.STRING)
+    private TaxaEntrega taxaEntrega;
     @Enumerated(EnumType.STRING)
     private Status status;
 }

@@ -17,9 +17,7 @@ public class Carrinho {
     private Long id;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Produto> produtos;
-    private Float precoUnitario; 
     private Float precoTotal;
-    private Float taxaEntrega;
     private Integer quantidadeProdutos;
     
 }

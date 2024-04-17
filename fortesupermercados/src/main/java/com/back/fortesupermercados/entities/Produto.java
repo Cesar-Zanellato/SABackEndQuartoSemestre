@@ -14,21 +14,22 @@ import lombok.NoArgsConstructor;
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Produto {
     @Id 
-    private Long id;
+    private Long codigoInterno;
+    private Long codigoProduto;
     @Column(length = 255)
     private String nome;
     private String valorVenda; 
     private String valorCompra;
-    private String valorLucro;
+    private String percentualLucro;
     
     private String promocao;
-    private Integer estoque;
-    private String imagem;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+    private Integer estoque;
+    private String imagem;
     // @Enumerated(EnumType.STRING) 
     // private Subcategoria subcategoria; 
-    // @Enumerated(EnumType.STRING)
-    // private Gramagem gramagem;
+    private String gramagemMinima;
+    private String gramagemMaxima;
 
 }
