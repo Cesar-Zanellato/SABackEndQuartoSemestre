@@ -1,9 +1,9 @@
 package com.back.fortesupermercados.repositories;
 
-import java.util.Locale.Category;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends JpaRepository<Category, Long>{
+import com.back.fortesupermercados.entities.Usuario;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     
 }

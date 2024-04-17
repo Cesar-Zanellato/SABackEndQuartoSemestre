@@ -1,10 +1,10 @@
 package com.back.fortesupermercados.repositories;
 
-import java.util.Locale.Category;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CarrinhoRepository extends JpaRepository<Category, Long>{
+import com.back.fortesupermercados.entities.Carrinho;
+
+public interface CarrinhoRepository extends JpaRepository<Carrinho, Long>{
 
     
 }
