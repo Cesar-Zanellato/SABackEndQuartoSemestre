@@ -2,8 +2,9 @@ package com.back.fortesupermercados.dtos.usuarios;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class UsuarioEntrada {
     
     private String nome;
