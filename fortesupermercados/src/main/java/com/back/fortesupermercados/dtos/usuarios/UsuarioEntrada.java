@@ -1,15 +1,11 @@
 package com.back.fortesupermercados.dtos.usuarios;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor
-public class UsuarioEntrada {
+public record UsuarioEntrada (
     
-    private String nome;
-    private String email;
-    private String telefone;
-    private String cpf;
-    private String senha;
-}
+    String nome,
+    String email,
+    String telefone,
+    String cpf,
+    String senha
+){}
