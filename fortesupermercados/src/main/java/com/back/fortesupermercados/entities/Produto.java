@@ -30,7 +30,6 @@ public class Produto {
     private Categoria categoria;
     @Enumerated(EnumType.STRING) 
     private Subcategoria subcategoria;
-    private String gramagemMinima;
-    private String gramagemMaxima;
+    private String gramagem;
 
 }

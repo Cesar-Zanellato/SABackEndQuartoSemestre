@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.back.fortesupermercados.dtos.usuarios.UsuarioEntrada;
-import com.back.fortesupermercados.dtos.usuarios.UsuarioSaida;
-import com.back.fortesupermercados.entities.Usuario;
+import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
+import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
+import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.repositories.ProdutoRepository;
 
 public class ProdutoService {
@@ -15,33 +15,33 @@ public class ProdutoService {
     ProdutoRepository repository;
 
     @Transactional
-    public UsuarioSaida create(UsuarioEntrada entrada){
-        Usuario usuario = convertEntradaParaUsuario(entrada);
-        usuario = repository.save(usuario);
+    public ProdutoSaida create(ProdutoEntrada entrada){
+        Produto produto = convertEntradaParaProduto(entrada);
+        produto = repository.save(produto);
 
-        return convertUsuarioParaSaida(usuario);
+        return convertProdutoParaSaida(produto);
     }
 
-    public List<UsuarioSaida> list(){
+    public List<ProdutoSaida> list(){
         return repository
         .findAll()
         .stream()
-        .map(usuario -> convertUsuarioParaSaida(usuario))
+        .map(produto -> convertProdutoParaSaida(produto))
         .toList();
     }
 
-    public UsuarioSaida read(Long id){
-        Usuario usuario = repository.findById(id).orElse(null);
-        return convertUsuarioParaSaida(usuario);
+    public ProdutoSaida read(Long id){
+        Produto produto = repository.findById(id).orElse(null);
+        return convertProdutoParaSaida(produto);
     }
 
     @Transactional
-    public UsuarioSaida update(Long id, UsuarioEntrada entrada){
+    public ProdutoSaida update(Long id, ProdutoEntrada entrada){
         if(repository.existsById(id)){
-            Usuario usuario = convertEntradaParaUsuario(entrada);
-            usuario.setId(id);
-            usuario = repository.save(usuario);
-            return convertUsuarioParaSaida(usuario);
+            Produto produto = convertEntradaParaProduto(entrada);
+            produto.setCodigoInterno(id);
+            produto = repository.save(produto);
+            return convertProdutoParaSaida(produto);
         }else{
             return null;
         }
@@ -51,31 +51,39 @@ public class ProdutoService {
         repository.deleteById(id);
     }
 
-    private UsuarioSaida convertUsuarioParaSaida(Usuario usuario){
-        if(usuario == null){
+    private ProdutoSaida convertProdutoParaSaida(Produto produto){
+        if(produto == null){
             return null;
         }
-        UsuarioSaida saida = new UsuarioSaida(
-            usuario.getId(), 
-            usuario.getNome(), 
-            usuario.getEmail(), 
-            usuario.getTelefone(), 
-            usuario.getCpf(), 
-            usuario.getEndereco(), 
-            usuario.getPedidos()
+        ProdutoSaida saida = new ProdutoSaida(
+            produto.getCodigoProduto(), 
+            produto.getNome(),
+            produto.getValorVenda(), 
+            produto.getPromocao(), 
+            produto.getEstoque(), 
+            produto.getImagem(), 
+            produto.getGramagem(), 
+            produto.getCategoria(), 
+            produto.getSubcategoria() 
         );
 
         return saida;
     }
 
-    private Usuario convertEntradaParaUsuario(UsuarioEntrada entrada){
-        Usuario usuario = new Usuario();
-        usuario.setNome(entrada.getNome());
-        usuario.setEmail(entrada.getEmail());
-        usuario.setTelefone(entrada.getTelefone());
-        usuario.setCpf(entrada.getCpf());
-        usuario.setSenha(entrada.getSenha());
+    private Produto convertEntradaParaProduto(ProdutoEntrada entrada){
+        Produto produto = new Produto();
+        produto.setCodigoInterno(entrada.codigoInterno());
+        produto.setCodigoProduto(entrada.codigoProduto());
+        produto.setNome(entrada.nome());
+        produto.setValorVenda(entrada.valorVenda());
+        produto.setValorCompra(entrada.valorCompra());
+        produto.setPercentualLucro(entrada.percentualLucro());
+        produto.setEstoque(entrada.estoque());
+        produto.setImagem(entrada.imagem());
+        produto.setCategoria(entrada.categoria());
+        produto.setSubcategoria(entrada.subcategoria());
+        produto.setGramagem(entrada.gramagem());
 
-        return usuario;
+        return produto;
     }
 }

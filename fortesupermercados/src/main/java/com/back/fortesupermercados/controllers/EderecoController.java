@@ -3,6 +3,8 @@ package com.back.fortesupermercados.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,37 +14,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.entities.Endereco;
-import com.back.fortesupermercados.repositories.EnderecoRepository;
+import com.back.fortesupermercados.dtos.enderecos.EnderecoEntrada;
+import com.back.fortesupermercados.dtos.enderecos.EnderecoSaida;
+import com.back.fortesupermercados.services.EnderecoService;
 @RestController
 @RequestMapping("/endereco")
 public class EderecoController {
     
     @Autowired
-    private EnderecoRepository repository;
+    private EnderecoService service;
 
     @GetMapping
-    public List<Endereco> list(){
-        return repository.findAll();
+    public ResponseEntity<List<EnderecoSaida>> list(){
+        List<EnderecoSaida> list = service.list();
+        return ResponseEntity.ok(list);
     }
-
+    
     @PostMapping
-    public Endereco create(@RequestBody Endereco endereco){
-        return repository.save(endereco);
+    public ResponseEntity<EnderecoSaida> create(@RequestBody EnderecoEntrada endereco){
+        EnderecoSaida saida = service.create(endereco);
+        return new ResponseEntity(saida, HttpStatus.CREATED);
+
     }
 
     @GetMapping("/{id}")
-    public Endereco read(@PathVariable Long id){
-        return repository.findById(id).get();
+    public ResponseEntity<EnderecoSaida> read(@PathVariable Long id){
+        EnderecoSaida endereco = service.read(id);
+        if(endereco == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(endereco);
     }
 
-    @PutMapping
-    public Endereco update(@RequestBody Endereco endereco){
-        return repository.save(endereco);
+    @PutMapping("/{id}")
+    public ResponseEntity<EnderecoSaida> update(@PathVariable Long id, @RequestBody EnderecoEntrada endereco){
+        EnderecoSaida saida = service.update(id, endereco);
+        if(saida == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(saida);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
-        repository.deleteById(id);
+    public ResponseEntity delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

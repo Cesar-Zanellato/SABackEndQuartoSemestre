@@ -72,11 +72,11 @@ public class UsuarioService {
 
     private Usuario convertEntradaParaUsuario(UsuarioEntrada entrada){
         Usuario usuario = new Usuario();
-        usuario.setNome(entrada.getNome());
-        usuario.setEmail(entrada.getEmail());
-        usuario.setTelefone(entrada.getTelefone());
-        usuario.setCpf(entrada.getCpf());
-        usuario.setSenha(entrada.getSenha());
+        usuario.setNome(entrada.nome());
+        usuario.setEmail(entrada.email());
+        usuario.setTelefone(entrada.telefone());
+        usuario.setCpf(entrada.cpf());
+        usuario.setSenha(entrada.senha());
 
         return usuario;
     }
@@ -111,6 +111,3 @@ public class UsuarioService {
 
     // }
 }
-
-
-

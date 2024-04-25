@@ -3,6 +3,8 @@ package com.back.fortesupermercados.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,38 +14,51 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.entities.Produto;
-import com.back.fortesupermercados.repositories.ProdutoRepository;
+import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
+import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
+import com.back.fortesupermercados.services.ProdutoService;
 
 @RestController
 @RequestMapping("/produto")
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository repository;
+    private ProdutoService service;
 
     @GetMapping
-    public List<Produto> list(){
-        return repository.findAll();
+    public ResponseEntity<List<ProdutoSaida>> list(){
+        List<ProdutoSaida> list = service.list();
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping
-    public Produto create(@RequestBody Produto produto){
-        return repository.save(produto);
+    public ResponseEntity<ProdutoSaida> create(@RequestBody ProdutoEntrada produto){
+        ProdutoSaida saida = service.create(produto);
+        return new ResponseEntity(saida, HttpStatus.CREATED);
+
     }
 
     @GetMapping("/{codigoInterno}")
-    public Produto read(@PathVariable Long codigoInterno){
-        return repository.findById(codigoInterno).get();
+    public ResponseEntity<ProdutoSaida> read(@PathVariable Long codigoInterno){
+        ProdutoSaida produto = service.read(codigoInterno);
+        if(produto == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(produto);
     }
 
-    @PutMapping
-    public Produto update(@RequestBody Produto produto){
-        return repository.save(produto);
+    @PutMapping("/{codigoInterno}")
+    public ResponseEntity<ProdutoSaida> update(@PathVariable Long codigoInterno, @RequestBody ProdutoEntrada produto){
+        ProdutoSaida saida = service.update(codigoInterno, produto);
+        if(saida == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(saida);
     }
 
     @DeleteMapping("/{codigoInterno}")
-    public void delete(@PathVariable Long codigoInterno){
-        repository.deleteById(codigoInterno);
+    public ResponseEntity delete(@PathVariable Long codigoInterno){
+        service.delete(codigoInterno);
+        return ResponseEntity.noContent().build();
     }
 }
