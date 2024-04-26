@@ -1,6 +1,4 @@
-package com.back.fortesupermercados.entities.enums;
-
-public enum Categoria {
+Categorias {
     ALIMENTOSBASICOS,
     BEBIDAS,
     MATINAIS,
