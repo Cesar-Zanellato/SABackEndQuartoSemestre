@@ -3,6 +3,7 @@ package com.back.fortesupermercados.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
 import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
+import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.services.ProdutoService;
 
 @RestController
@@ -26,8 +28,8 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping
-    public ResponseEntity<List<ProdutoSaida>> list(){
-        List<ProdutoSaida> list = service.list();
+    public ResponseEntity<List<ProdutoSaida>> list(Pageable page, Produto exemplo){
+        List<ProdutoSaida> list = service.list(page, exemplo);
         return ResponseEntity.ok(list);
     }
 

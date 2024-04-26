@@ -3,6 +3,11 @@ package com.back.fortesupermercados.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
@@ -10,6 +15,7 @@ import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
 import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.repositories.ProdutoRepository;
 
+@Service
 public class ProdutoService {
     @Autowired
     ProdutoRepository repository;
@@ -22,9 +28,17 @@ public class ProdutoService {
         return convertProdutoParaSaida(produto);
     }
 
-    public List<ProdutoSaida> list(){
+    public List<ProdutoSaida> list(Pageable page, Produto produtoExemplo){
+
+        ExampleMatcher matcher = ExampleMatcher
+                                        .matching()
+                                        .withIgnoreCase()
+                                        .withStringMatcher(StringMatcher.CONTAINING);
+
+        Example<Produto> exemplo = Example.of(produtoExemplo, matcher);
+
         return repository
-        .findAll()
+        .findAll(exemplo, page)
         .stream()
         .map(produto -> convertProdutoParaSaida(produto))
         .toList();
@@ -62,9 +76,7 @@ public class ProdutoService {
             produto.getPromocao(), 
             produto.getEstoque(), 
             produto.getImagem(), 
-            produto.getGramagem(), 
-            produto.getCategoria(), 
-            produto.getSubcategoria() 
+            produto.getGramagem()
         );
 
         return saida;
@@ -80,8 +92,6 @@ public class ProdutoService {
         produto.setPercentualLucro(entrada.percentualLucro());
         produto.setEstoque(entrada.estoque());
         produto.setImagem(entrada.imagem());
-        produto.setCategoria(entrada.categoria());
-        produto.setSubcategoria(entrada.subcategoria());
         produto.setGramagem(entrada.gramagem());
 
         return produto;

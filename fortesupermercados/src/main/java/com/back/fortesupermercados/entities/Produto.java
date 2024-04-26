@@ -1,12 +1,7 @@
 package com.back.fortesupermercados.entities;
 
-import com.back.fortesupermercados.entities.enums.Categoria;
-import com.back.fortesupermercados.entities.enums.Subcategoria;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -26,10 +21,6 @@ public class Produto {
     private String promocao;
     private Integer estoque;
     private String imagem;
-    @Enumerated(EnumType.STRING)
-    private Categoria categoria;
-    @Enumerated(EnumType.STRING) 
-    private Subcategoria subcategoria;
     private String gramagem;
 
 }
