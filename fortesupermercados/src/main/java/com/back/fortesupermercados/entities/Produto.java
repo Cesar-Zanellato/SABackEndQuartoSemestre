@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Produto {
     @Id 
+    private Long id;
     private Long codigoInterno;
     private Long codigoProduto;
     @Column(length = 255)
