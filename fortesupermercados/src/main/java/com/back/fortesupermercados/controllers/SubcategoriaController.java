@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.pedidos.PedidoEntrada;
-import com.back.fortesupermercados.dtos.pedidos.PedidoSaida;
-import com.back.fortesupermercados.services.PedidoService;
+import com.back.fortesupermercados.dtos.subcategoria.SubcategoriaEntrada;
+import com.back.fortesupermercados.dtos.subcategoria.SubcategoriaSaida;
+import com.back.fortesupermercados.services.SubcategoriaService;
 
 @RestController
-@RequestMapping("/pedidos")
-public class PedidoController {
-    
+@RequestMapping("/subcategorias")
+public class SubcategoriaController {
+     
     @Autowired
-    private PedidoService service;
+    private SubcategoriaService service;
 
     @GetMapping
-    public ResponseEntity<List<PedidoSaida>> list(){
-        List<PedidoSaida> list = service.list();
+    public ResponseEntity<List<SubcategoriaSaida>> list(){
+        List<SubcategoriaSaida> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<PedidoSaida> create(@RequestBody PedidoEntrada pedido){
-        PedidoSaida saida = service.create(pedido);
+    public ResponseEntity<SubcategoriaSaida> create(@RequestBody SubcategoriaEntrada subcategoria){
+        SubcategoriaSaida saida = service.create(subcategoria);
         return new ResponseEntity(saida, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoSaida> read(@PathVariable Long id){
-        PedidoSaida pedido = service.read(id);
-        if(pedido == null){
+    public ResponseEntity<SubcategoriaSaida> read(@PathVariable Long id){
+        SubcategoriaSaida subcategoria = service.read(id);
+        if(subcategoria == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(pedido);
+        return ResponseEntity.ok(subcategoria);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoSaida> update(@PathVariable Long id, @RequestBody PedidoEntrada pedido){
-        PedidoSaida saida = service.update(id, pedido);
+    public ResponseEntity<SubcategoriaSaida> update(@PathVariable Long id, @RequestBody SubcategoriaEntrada subcategoria){
+        SubcategoriaSaida saida = service.update(id, subcategoria);
         if(saida == null){
             return ResponseEntity.notFound().build();
         }

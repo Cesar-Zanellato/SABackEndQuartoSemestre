@@ -21,7 +21,7 @@ import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.services.ProdutoService;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     @Autowired
