@@ -1,10 +1,5 @@
 package com.back.fortesupermercados.data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +7,21 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.back.fortesupermercados.entities.Categoria;
 import com.back.fortesupermercados.entities.Subcategoria;
+import com.back.fortesupermercados.repositories.CategoriaRepository;
 import com.back.fortesupermercados.repositories.SubcategoriaRepository;
 
 @Component
 public class DataLoader implements ApplicationRunner{
 
+    private CategoriaRepository categoriaRepository;
     private SubcategoriaRepository subcategoriaRepository;
 
-    List<String> subcategorias = Arrays.asList(
+    List<String> categorias = List.of(
+        "ALIMENTOSBASICOS", "BEBIDAS", "MATINAIS", "HIGIENEPESSOAL", "LIMPEZA", "PADARIA", "HORTIFRUIT", "ACOUGUE"
+    );
+    List<String> subcategorias = List.of(
         "ACUCAR", "ARROZ", "AZEITE", "FARINHA", "FAROFA", "FEIJAO", "GRAOS", "MASSAS", "OLEO", "OVO",
         "SAL", "VINAGRE", "OUTROS_ALIMENTOS_BASICOS", "AGUA_COM_GAS", "AGUA_SEM_GAS", "AGUA_TONICA",
         "BEBIDAS_DIVERSAS", "ENEGETICO_GARRAFA", "ENEGETICO_LATA", "REFRIGERANTE_DOIS_LITROSORIGINAL",
@@ -51,14 +52,29 @@ public class DataLoader implements ApplicationRunner{
     );
     
     @Autowired
-    public DataLoader(SubcategoriaRepository subcategoriaRepository) {
+    public DataLoader(SubcategoriaRepository subcategoriaRepository, CategoriaRepository categoriaRepository) {
         this.subcategoriaRepository = subcategoriaRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
     public void run(ApplicationArguments args) {
-        
-        subcategoriaRepository.save(new Subcategoria(subcategorias));
+        Long idSubcategoria = 1L;
+        Long idCategoria = 1L;
+        for (String categoriaNome: categorias) {
+            Categoria categoria = new Categoria();
+            categoria.setNome(categoriaNome);
+            categoria.setId(idCategoria);
+            categoriaRepository.save(categoria);
+            idCategoria++;
+        }
+        for (String subcategoriaNome: subcategorias) {
+            Subcategoria subcategoria = new Subcategoria();
+            subcategoria.setNome(subcategoriaNome);
+            subcategoria.setId(idSubcategoria);
+            subcategoriaRepository.save(subcategoria);
+            idSubcategoria++;
+        }
     }
-
+    
 }
 
