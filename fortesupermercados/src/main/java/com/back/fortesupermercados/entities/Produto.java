@@ -1,6 +1,5 @@
 package com.back.fortesupermercados.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -14,7 +13,6 @@ public class Produto {
     private Long id;
     private Long codigoInterno;
     private Long codigoProduto;
-    @Column(length = 255)
     private String nome;
     private String valorVenda; 
     private String valorCompra;

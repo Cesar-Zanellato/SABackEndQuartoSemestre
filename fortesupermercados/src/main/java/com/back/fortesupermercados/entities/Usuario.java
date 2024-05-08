@@ -3,7 +3,6 @@ package com.back.fortesupermercados.entities;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -19,15 +18,10 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 255)
     private String nome;
-    @Column(length = 255)
     private String email;
-    @Column(length = 9)
     private String telefone;
-    @Column(length = 11)
     private String cpf;
-    @Column(length = 26)
     private String senha;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Endereco> endereco;
