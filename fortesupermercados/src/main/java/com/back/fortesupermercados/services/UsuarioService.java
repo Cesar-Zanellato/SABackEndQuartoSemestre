@@ -3,6 +3,10 @@ package com.back.fortesupermercados.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +16,7 @@ import com.back.fortesupermercados.entities.Usuario;
 import com.back.fortesupermercados.repositories.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService{
     @Autowired
     UsuarioRepository repository;
 
@@ -81,24 +85,20 @@ public class UsuarioService {
         return usuario;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
+        Usuario usuario = repository.findByCpf(cpf);
+        if(usuario == null){
+            throw new UsernameNotFoundException("Usuario not found");
+        }
 
+        return User
+                .builder()
+                .username(usuario.getUsername())
+                .password(usuario.getPassword())
+                .build();
+    }
 
-    // public List<Usuario> getAllUsuarios() throws Exception{
-
-    //     List<Usuario> allUsuarios;
-
-    //     try {
-    //         allUsuarios = repository.findAll();
-    //     } catch(Exception ex){
-    //         allUsuarios = List.of();
-    //     }
-
-    //     if (allUsuarios.size() == 0){
-    //         throw new Exception("Lista de usuarios vazia");
-    //     }else{
-    //         return hasUsuario(allUsuarios);
-    //     }
-    // }
 
 
     // public List<Usuario> hasUsuario(List<Usuario> usuarios) throws Exception{
