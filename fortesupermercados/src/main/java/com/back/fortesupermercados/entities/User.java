@@ -40,14 +40,6 @@ public class User implements UserDetails{
         return null;
     }
     @Override
-    public String getPassword() {
-        return password;    
-    }
-    @Override
-    public String getUsername() {
-        return name;    
-    }
-    @Override
     public boolean isAccountNonExpired() {
         return true;
     }

@@ -67,8 +67,8 @@ public class UserService implements UserDetailsService{
             user.getEmail(), 
             user.getPhone(), 
             user.getCpf(), 
-            user.getEndereco(), 
-            user.getPedidos()
+            user.getAddress(), 
+            user.getDelivery()
         );
 
         return output;
@@ -85,19 +85,19 @@ public class UserService implements UserDetailsService{
         return user;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-        User user = repository.findByCpf(cpf);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found");
-        }
+    // @Override
+    // public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
+    //     User user = repository.findByCpf(cpf);
+    //     if(user == null){
+    //         throw new UsernameNotFoundException("User not found");
+    //     }
 
-        return User
-                .builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
-    }
+    //     return User
+    //             .builder()
+    //             .username(user.getUsername())
+    //             .password(user.getPassword())
+    //             .build();
+    // }
 
 
 

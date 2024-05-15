@@ -1,7 +1,7 @@
 package com.back.fortesupermercados.dtos.subcategories;
 
-public record SubcategoriaSaida(
+public record SubcategoryOutput(
 
     Long id,
-    String nome
+    String name
 ){}

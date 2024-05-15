@@ -2,8 +2,8 @@ package com.back.fortesupermercados.dtos.subcategories;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record SubcategoriaEntrada(
+public record SubcategoryInput(
 
     @NotBlank
-    String nome
+    String name
 ){}

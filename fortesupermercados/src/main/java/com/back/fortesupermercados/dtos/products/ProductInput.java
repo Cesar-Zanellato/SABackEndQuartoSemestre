@@ -23,7 +23,7 @@ public record ProductInput(
     @NotNull
     String image,
     @NotNull
-    Integer stock,
+    String stock,
     @NotBlank
     String amount
 ){}

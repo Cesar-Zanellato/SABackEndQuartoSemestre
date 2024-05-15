@@ -7,21 +7,21 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.back.fortesupermercados.entities.Categoria;
-import com.back.fortesupermercados.entities.Subcategoria;
-import com.back.fortesupermercados.repositories.CategoriaRepository;
-import com.back.fortesupermercados.repositories.SubcategoriaRepository;
+import com.back.fortesupermercados.entities.Category;
+import com.back.fortesupermercados.entities.Subcategory;
+import com.back.fortesupermercados.repositories.CategoryRepository;
+import com.back.fortesupermercados.repositories.SubcategoryRepository;
 
 @Component
 public class DataLoader implements ApplicationRunner{
 
-    private CategoriaRepository categoriaRepository;
-    private SubcategoriaRepository subcategoriaRepository;
+    private CategoryRepository categoryRepository;
+    private SubcategoryRepository subcategoryRepository;
 
-    List<String> categorias = List.of(
+    List<String> categories = List.of(
         "ALIMENTOSBASICOS", "BEBIDAS", "MATINAIS", "HIGIENEPESSOAL", "LIMPEZA", "PADARIA", "HORTIFRUIT", "ACOUGUE"
     );
-    List<String> subcategorias = List.of(
+    List<String> subcategories = List.of(
         "ACUCAR", "ARROZ", "AZEITE", "FARINHA", "FAROFA", "FEIJAO", "GRAOS", "MASSAS", "OLEO", "OVO",
         "SAL", "VINAGRE", "OUTROS_ALIMENTOS_BASICOS", "AGUA_COM_GAS", "AGUA_SEM_GAS", "AGUA_TONICA",
         "BEBIDAS_DIVERSAS", "ENEGETICO_GARRAFA", "ENEGETICO_LATA", "REFRIGERANTE_DOIS_LITROSORIGINAL",
@@ -52,27 +52,27 @@ public class DataLoader implements ApplicationRunner{
     );
     
     @Autowired
-    public DataLoader(SubcategoriaRepository subcategoriaRepository, CategoriaRepository categoriaRepository) {
-        this.subcategoriaRepository = subcategoriaRepository;
-        this.categoriaRepository = categoriaRepository;
+    public DataLoader(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository) {
+        this.subcategoryRepository = subcategoryRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public void run(ApplicationArguments args) {
-        Long idSubcategoria = 1L;
+        Long idSubcategory = 1L;
         Long idCategoria = 1L;
-        for (String categoriaNome: categorias) {
-            Categoria categoria = new Categoria();
-            categoria.setNome(categoriaNome);
-            categoria.setId(idCategoria);
-            categoriaRepository.save(categoria);
+        for (String categoryName: categories) {
+            Category category = new Category();
+            category.setName(categoryName);
+            category.setId(idCategoria);
+            categoryRepository.save(category);
             idCategoria++;
         }
-        for (String subcategoriaNome: subcategorias) {
-            Subcategoria subcategoria = new Subcategoria();
-            subcategoria.setNome(subcategoriaNome);
-            subcategoria.setId(idSubcategoria);
-            subcategoriaRepository.save(subcategoria);
-            idSubcategoria++;
+        for (String subcategoryName: subcategories) {
+            Subcategory subcategory = new Subcategory();
+            subcategory.setName(subcategoryName);
+            subcategory.setId(idSubcategory);
+            subcategoryRepository.save(subcategory);
+            idSubcategory++;
         }
     }
     
