@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
-import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
+import com.back.fortesupermercados.dtos.products.ProdutoEntrada;
+import com.back.fortesupermercados.dtos.products.ProdutoSaida;
 import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.services.ProdutoService;
 

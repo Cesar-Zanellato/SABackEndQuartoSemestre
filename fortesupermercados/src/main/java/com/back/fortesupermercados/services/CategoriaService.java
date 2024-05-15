@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.back.fortesupermercados.dtos.categoria.CategoriaEntrada;
-import com.back.fortesupermercados.dtos.categoria.CategoriaSaida;
+import com.back.fortesupermercados.dtos.categories.CategoriaEntrada;
+import com.back.fortesupermercados.dtos.categories.CategoriaSaida;
 import com.back.fortesupermercados.entities.Categoria;
 import com.back.fortesupermercados.repositories.CategoriaRepository;
 

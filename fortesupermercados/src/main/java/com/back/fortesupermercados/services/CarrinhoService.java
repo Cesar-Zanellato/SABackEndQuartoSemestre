@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.back.fortesupermercados.dtos.carrinhos.CarrinhoEntrada;
-import com.back.fortesupermercados.dtos.carrinhos.CarrinhoSaida;
+import com.back.fortesupermercados.dtos.shopping.CarrinhoEntrada;
+import com.back.fortesupermercados.dtos.shopping.CarrinhoSaida;
 import com.back.fortesupermercados.entities.Carrinho;
 import com.back.fortesupermercados.repositories.CarrinhoRepository;
 

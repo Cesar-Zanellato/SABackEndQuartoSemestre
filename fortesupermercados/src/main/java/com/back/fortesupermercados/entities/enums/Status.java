@@ -1,10 +1,10 @@
 package com.back.fortesupermercados.entities.enums;
 
 public enum Status {
-    AGUARDANDOSEPARACAO,
-    EMSEPARACAO,
-    AGUARDANDOENTREGA,
-    ROTAENTREGA,
+    AGUARDANDO_SEPARACAO,
+    EM_SEPARACAO,
+    AGUARDANDO_ENTREGA,
+    ROTA_ENTREGA,
     FINALIZADO,
     CANCELADO
 }

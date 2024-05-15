@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.subcategoria.SubcategoriaEntrada;
-import com.back.fortesupermercados.dtos.subcategoria.SubcategoriaSaida;
+import com.back.fortesupermercados.dtos.subcategories.SubcategoriaEntrada;
+import com.back.fortesupermercados.dtos.subcategories.SubcategoriaSaida;
 import com.back.fortesupermercados.services.SubcategoriaService;
 
 @RestController

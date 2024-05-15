@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.carrinhos.CarrinhoSaida;
-import com.back.fortesupermercados.dtos.carrinhos.CarrinhoEntrada;
+import com.back.fortesupermercados.dtos.shopping.CarrinhoEntrada;
+import com.back.fortesupermercados.dtos.shopping.CarrinhoSaida;
 import com.back.fortesupermercados.services.CarrinhoService;
 
 @RestController

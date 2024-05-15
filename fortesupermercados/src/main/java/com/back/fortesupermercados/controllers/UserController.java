@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,46 +15,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.categories.CategoriaEntrada;
-import com.back.fortesupermercados.dtos.categories.CategoriaSaida;
-import com.back.fortesupermercados.services.CategoriaService;
+import com.back.fortesupermercados.dtos.users.UserInput;
+import com.back.fortesupermercados.dtos.users.UserOutput;
+import com.back.fortesupermercados.services.UserService;
 
-@RestController
-@RequestMapping("/categorias")
-public class CategoriaController {
-     
+@RestController @Validated
+@RequestMapping("/user")
+public class UserController {
+
     @Autowired
-    private CategoriaService service;
+    private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<CategoriaSaida>> list(){
-        List<CategoriaSaida> list = service.list();
+    public ResponseEntity<List<UserOutput>> list(){
+        List<UserOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<CategoriaSaida> create(@RequestBody CategoriaEntrada categoria){
-        CategoriaSaida saida = service.create(categoria);
-        return new ResponseEntity(saida, HttpStatus.CREATED);
+    public ResponseEntity<UserOutput> create(@RequestBody UserInput user){
+        UserOutput output = service.create(user);
+        return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaSaida> read(@PathVariable Long id){
-        CategoriaSaida categoria = service.read(id);
-        if(categoria == null){
+    public ResponseEntity<UserOutput> read(@PathVariable Long id){
+        UserOutput user = service.read(id);
+        if(user == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaSaida> update(@PathVariable Long id, @RequestBody CategoriaEntrada categoria){
-        CategoriaSaida saida = service.update(id, categoria);
-        if(saida == null){
+    public ResponseEntity<UserOutput> update(@PathVariable Long id, @RequestBody UserInput user){
+        UserOutput output = service.update(id, user);
+        if(output == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(saida);
+        return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")

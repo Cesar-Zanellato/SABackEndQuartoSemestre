@@ -10,8 +10,8 @@ import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.back.fortesupermercados.dtos.produtos.ProdutoEntrada;
-import com.back.fortesupermercados.dtos.produtos.ProdutoSaida;
+import com.back.fortesupermercados.dtos.products.ProdutoEntrada;
+import com.back.fortesupermercados.dtos.products.ProdutoSaida;
 import com.back.fortesupermercados.entities.Produto;
 import com.back.fortesupermercados.repositories.ProdutoRepository;
 
