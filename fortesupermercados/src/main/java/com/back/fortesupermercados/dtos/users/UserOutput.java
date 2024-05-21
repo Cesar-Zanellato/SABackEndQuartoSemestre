@@ -11,6 +11,6 @@ public record UserOutput(
     String email,
     String phone,
     String cpf,
-    List<Address> address,
+    Address address,
     List<Delivery> delivery
 ){}

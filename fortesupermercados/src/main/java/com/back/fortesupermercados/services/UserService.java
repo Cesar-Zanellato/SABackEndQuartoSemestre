@@ -3,7 +3,6 @@ package com.back.fortesupermercados.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,13 +17,12 @@ import com.back.fortesupermercados.repositories.UserRepository;
 @Service
 public class UserService implements UserDetailsService{
     @Autowired
-    UserRepository repository;
+    private UserRepository repository;
 
     @Transactional
     public UserOutput create(UserInput input){
         User user = convertInputToUser(input);
         user = repository.save(user);
-
         return convertUserToOutput(user);
     }
 
@@ -63,7 +61,7 @@ public class UserService implements UserDetailsService{
         }
         UserOutput output = new UserOutput(
             user.getId(), 
-            user.getName(), 
+            user.getName(),
             user.getEmail(), 
             user.getPhone(), 
             user.getCpf(), 
@@ -85,29 +83,17 @@ public class UserService implements UserDetailsService{
         return user;
     }
 
-    // @Override
-    // public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-    //     User user = repository.findByCpf(cpf);
-    //     if(user == null){
-    //         throw new UsernameNotFoundException("User not found");
-    //     }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.findByEmail(email);
+        if(user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
 
-    //     return User
-    //             .builder()
-    //             .username(user.getUsername())
-    //             .password(user.getPassword())
-    //             .build();
-    // }
-
-
-
-    // public List<User> hasUser(List<User> users) throws Exception{
-    //     if (users.size() == 0){
-    //         return null;
-    //         // throw new Exception("Lista de users vazia");
-    //     }else{
-    //         return users;
-    //     }
-
-    // }
+        return org.springframework.security.core.userdetails.User
+                .builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .build();
+    }
 }

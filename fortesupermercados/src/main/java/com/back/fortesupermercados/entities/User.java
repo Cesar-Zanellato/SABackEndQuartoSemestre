@@ -6,12 +6,10 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
@@ -27,8 +25,8 @@ public class User implements UserDetails{
     private String phone;
     private String cpf;
     private String password;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Address> address;
+    @OneToOne
+    private Address address;
     @OneToOne
     private Shopping shopping;
     @OneToMany
@@ -37,22 +35,31 @@ public class User implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return null;    
     }
+
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true;    
     }
+
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true;    
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     @Override
     public boolean isEnabled() {
-        return true;
+        return true;    
+    }
+
+    @Override
+    public String getUsername() {
+        return name;    
     }
 }
