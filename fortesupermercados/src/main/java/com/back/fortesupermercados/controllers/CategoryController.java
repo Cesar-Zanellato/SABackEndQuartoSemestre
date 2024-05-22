@@ -14,45 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.address.EnderecoEntrada;
-import com.back.fortesupermercados.dtos.address.EnderecoSaida;
-import com.back.fortesupermercados.services.EnderecoService;
+import com.back.fortesupermercados.dtos.categories.CategoryInput;
+import com.back.fortesupermercados.dtos.categories.CategoryOutput;
+import com.back.fortesupermercados.services.CategoryService;
+
 @RestController
-@RequestMapping("/endereco")
-public class EderecoController {
-    
+@RequestMapping("/category")
+public class CategoryController {
+     
     @Autowired
-    private EnderecoService service;
+    private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<EnderecoSaida>> list(){
-        List<EnderecoSaida> list = service.list();
+    public ResponseEntity<List<CategoryOutput>> list(){
+        List<CategoryOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<EnderecoSaida> create(@RequestBody EnderecoEntrada endereco){
-        EnderecoSaida saida = service.create(endereco);
-        return new ResponseEntity(saida, HttpStatus.CREATED);
+    public ResponseEntity<CategoryOutput> create(@RequestBody CategoryInput category){
+        CategoryOutput output = service.create(category);
+        return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EnderecoSaida> read(@PathVariable Long id){
-        EnderecoSaida endereco = service.read(id);
-        if(endereco == null){
+    public ResponseEntity<CategoryOutput> read(@PathVariable Long id){
+        CategoryOutput category = service.read(id);
+        if(category == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(endereco);
+        return ResponseEntity.ok(category);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EnderecoSaida> update(@PathVariable Long id, @RequestBody EnderecoEntrada endereco){
-        EnderecoSaida saida = service.update(id, endereco);
-        if(saida == null){
+    public ResponseEntity<CategoryOutput> update(@PathVariable Long id, @RequestBody CategoryInput category){
+        CategoryOutput output = service.update(id, category);
+        if(output == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(saida);
+        return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")

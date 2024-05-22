@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,33 +15,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.deliveries.PedidoEntrada;
-import com.back.fortesupermercados.dtos.deliveries.PedidoSaida;
-import com.back.fortesupermercados.services.PedidoService;
+import com.back.fortesupermercados.dtos.deliveries.DeliveryInput;
+import com.back.fortesupermercados.dtos.deliveries.DeliveryOutput;
+import com.back.fortesupermercados.services.DeliveryService;
 
-@RestController
+@RestController @Validated
 @RequestMapping("/pedidos")
-public class PedidoController {
+public class DeliveryController {
     
     @Autowired
-    private PedidoService service;
+    private DeliveryService service;
 
     @GetMapping
-    public ResponseEntity<List<PedidoSaida>> list(){
-        List<PedidoSaida> list = service.list();
+    public ResponseEntity<List<DeliveryOutput>> list(){
+        List<DeliveryOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<PedidoSaida> create(@RequestBody PedidoEntrada pedido){
-        PedidoSaida saida = service.create(pedido);
+    public ResponseEntity<DeliveryOutput> create(@RequestBody DeliveryInput pedido){
+        DeliveryOutput saida = service.create(pedido);
         return new ResponseEntity(saida, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoSaida> read(@PathVariable Long id){
-        PedidoSaida pedido = service.read(id);
+    public ResponseEntity<DeliveryOutput> read(@PathVariable Long id){
+        DeliveryOutput pedido = service.read(id);
         if(pedido == null){
             return ResponseEntity.notFound().build();
         }
@@ -48,8 +49,8 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoSaida> update(@PathVariable Long id, @RequestBody PedidoEntrada pedido){
-        PedidoSaida saida = service.update(id, pedido);
+    public ResponseEntity<DeliveryOutput> update(@PathVariable Long id, @RequestBody DeliveryInput pedido){
+        DeliveryOutput saida = service.update(id, pedido);
         if(saida == null){
             return ResponseEntity.notFound().build();
         }

@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService{
         }
     }
 
+    @Transactional
     public void delete(Long id){
         repository.deleteById(id);
     }

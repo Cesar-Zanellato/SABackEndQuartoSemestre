@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,46 +15,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.subcategories.SubcategoriaEntrada;
-import com.back.fortesupermercados.dtos.subcategories.SubcategoriaSaida;
-import com.back.fortesupermercados.services.SubcategoriaService;
+import com.back.fortesupermercados.dtos.shopping.ShoppingInput;
+import com.back.fortesupermercados.dtos.shopping.ShoppingOutput;
+import com.back.fortesupermercados.services.ShoppingService;
 
-@RestController
-@RequestMapping("/subcategorias")
-public class SubcategoriaController {
-     
+@RestController @Validated
+@RequestMapping("/shopping")
+public class ShoppingController {
+
     @Autowired
-    private SubcategoriaService service;
+    private ShoppingService service;
 
     @GetMapping
-    public ResponseEntity<List<SubcategoriaSaida>> list(){
-        List<SubcategoriaSaida> list = service.list();
+    public ResponseEntity<List<ShoppingOutput>> list(){
+        List<ShoppingOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<SubcategoriaSaida> create(@RequestBody SubcategoriaEntrada subcategoria){
-        SubcategoriaSaida saida = service.create(subcategoria);
-        return new ResponseEntity(saida, HttpStatus.CREATED);
+    public ResponseEntity<ShoppingOutput> create(@RequestBody ShoppingInput shopping){
+        ShoppingOutput output = service.create(shopping);
+        return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubcategoriaSaida> read(@PathVariable Long id){
-        SubcategoriaSaida subcategoria = service.read(id);
-        if(subcategoria == null){
+    public ResponseEntity<ShoppingOutput> read(@PathVariable Long id){
+        ShoppingOutput shopping = service.read(id);
+        if(shopping == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(subcategoria);
+        return ResponseEntity.ok(shopping);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubcategoriaSaida> update(@PathVariable Long id, @RequestBody SubcategoriaEntrada subcategoria){
-        SubcategoriaSaida saida = service.update(id, subcategoria);
-        if(saida == null){
+    public ResponseEntity<ShoppingOutput> update(@PathVariable Long id, @RequestBody ShoppingInput shopping){
+        ShoppingOutput output = service.update(id, shopping);
+        if(output == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(saida);
+        return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")

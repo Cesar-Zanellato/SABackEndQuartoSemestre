@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,46 +15,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back.fortesupermercados.dtos.categories.CategoriaEntrada;
-import com.back.fortesupermercados.dtos.categories.CategoriaSaida;
-import com.back.fortesupermercados.services.CategoriaService;
+import com.back.fortesupermercados.dtos.address.AddressInput;
+import com.back.fortesupermercados.dtos.address.AddressOutput;
+import com.back.fortesupermercados.services.AddressService;
 
-@RestController
-@RequestMapping("/categorias")
-public class CategoriaController {
-     
+@RestController @Validated
+@RequestMapping("/address")
+public class AddressController {
+    
     @Autowired
-    private CategoriaService service;
+    private AddressService service;
 
     @GetMapping
-    public ResponseEntity<List<CategoriaSaida>> list(){
-        List<CategoriaSaida> list = service.list();
+    public ResponseEntity<List<AddressOutput>> list(){
+        List<AddressOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
     
     @PostMapping
-    public ResponseEntity<CategoriaSaida> create(@RequestBody CategoriaEntrada categoria){
-        CategoriaSaida saida = service.create(categoria);
-        return new ResponseEntity(saida, HttpStatus.CREATED);
+    public ResponseEntity<AddressOutput> create(@RequestBody AddressInput address){
+        AddressOutput output = service.create(address);
+        return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaSaida> read(@PathVariable Long id){
-        CategoriaSaida categoria = service.read(id);
-        if(categoria == null){
+    public ResponseEntity<AddressOutput> read(@PathVariable Long id){
+        AddressOutput address = service.read(id);
+        if(address == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok(address);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaSaida> update(@PathVariable Long id, @RequestBody CategoriaEntrada categoria){
-        CategoriaSaida saida = service.update(id, categoria);
-        if(saida == null){
+    public ResponseEntity<AddressOutput> update(@PathVariable Long id, @RequestBody AddressInput address){
+        AddressOutput output = service.update(id, address);
+        if(output == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(saida);
+        return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
