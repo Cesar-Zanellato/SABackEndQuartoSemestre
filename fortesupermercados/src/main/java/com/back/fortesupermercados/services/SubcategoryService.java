@@ -59,7 +59,8 @@ public class SubcategoryService {
         }
         SubcategoryOutput output = new SubcategoryOutput(
             subcategory.getId(), 
-            subcategory.getName()
+            subcategory.getName(),
+            subcategory.getValue()
         );
 
         return output;
@@ -68,6 +69,7 @@ public class SubcategoryService {
     private Subcategory convertInputToSubcategory(SubcategoryInput input){
         Subcategory subcategory = new Subcategory();
         subcategory.setName(input.name());
+        subcategory.setValue(input.value());
 
         return subcategory;
     }

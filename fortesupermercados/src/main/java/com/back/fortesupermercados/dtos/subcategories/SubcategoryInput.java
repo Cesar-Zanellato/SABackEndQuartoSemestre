@@ -5,5 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 public record SubcategoryInput(
 
     @NotBlank
-    String name
+    String name,
+    Integer value
 ){}
