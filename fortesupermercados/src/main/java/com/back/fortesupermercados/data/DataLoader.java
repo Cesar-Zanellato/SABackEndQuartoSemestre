@@ -56,10 +56,6 @@ public class DataLoader implements ApplicationRunner{
                     subcategoryRepository.save(subcategory);
                 }
             }
-
-            for(String string: subcategories){
-                System.out.println(string.toString());
-            }
         }
     }
 }

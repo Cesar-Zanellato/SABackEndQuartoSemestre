@@ -2,11 +2,11 @@ package com.back.fortesupermercados.services;
 
 import java.time.Instant;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.back.fortesupermercados.entities.User;
 
 @Service
 public class TokenService {
@@ -14,11 +14,11 @@ public class TokenService {
     private Integer expiration = 30;
     private String issuer = "Forte Supermercados"; 
 
-    public String createToken(User user) {
+    public String createToken(UserDetails userDetails) {
         var algoritmo = Algorithm.HMAC256(secret);
         return JWT.create()
                 .withIssuer(issuer)
-                .withSubject(user.getUsername())
+                .withSubject(userDetails.getUsername())
                 .withExpiresAt(getExpiration())
                 .sign(algoritmo);
     }

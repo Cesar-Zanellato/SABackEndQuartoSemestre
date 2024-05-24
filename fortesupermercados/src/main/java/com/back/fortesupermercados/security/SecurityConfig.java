@@ -13,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.back.fortesupermercados.services.UserService;
+
 import org.springframework.security.config.Customizer;
 
 @Configuration
@@ -21,7 +24,10 @@ public class SecurityConfig {
 
     @Autowired
     private SecurityFilter securityFilter;
-
+    
+    @Autowired
+    private UserService userService;
+    
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();
@@ -34,11 +40,13 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         AuthenticationManagerBuilder builder = http.getSharedObject(
             AuthenticationManagerBuilder.class
         );
+        builder.userDetailsService(userService).passwordEncoder(getPasswordEncoder());
         var authentication = builder.build();
 
         http.cors(cors -> cors.disable())
