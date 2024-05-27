@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.back.fortesupermercados.dtos.subcategories.SubcategoryInput;
 import com.back.fortesupermercados.dtos.subcategories.SubcategoryOutput;
 import com.back.fortesupermercados.services.SubcategoryService;
-import com.back.fortesupermercados.services.SubcategoryService;
 
 @RestController @Validated
 @RequestMapping("/subcategory")

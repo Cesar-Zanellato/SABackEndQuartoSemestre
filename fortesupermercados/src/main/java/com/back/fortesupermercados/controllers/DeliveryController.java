@@ -20,7 +20,7 @@ import com.back.fortesupermercados.dtos.deliveries.DeliveryOutput;
 import com.back.fortesupermercados.services.DeliveryService;
 
 @RestController @Validated
-@RequestMapping("/pedidos")
+@RequestMapping("/delivery")
 public class DeliveryController {
     
     @Autowired
