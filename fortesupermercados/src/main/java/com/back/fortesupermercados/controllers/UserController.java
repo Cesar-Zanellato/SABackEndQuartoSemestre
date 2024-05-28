@@ -35,7 +35,6 @@ public class UserController {
     }
     
     @PostMapping
-    @CrossOrigin("*")
     public ResponseEntity<UserOutput> create(@RequestBody UserInput user){
         UserOutput output = service.create(user);
         return new ResponseEntity(output, HttpStatus.CREATED);

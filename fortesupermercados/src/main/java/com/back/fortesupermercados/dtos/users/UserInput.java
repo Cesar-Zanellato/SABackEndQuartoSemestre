@@ -1,5 +1,4 @@
 package com.back.fortesupermercados.dtos.users;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +9,7 @@ public record UserInput (
     
     @NotBlank @Size(max = 255)
     String name,
-    @NotNull @Email @Size(max = 255) @UniqueElements
+    @NotNull @Email @Size(max = 255)
     String email,
     @NotNull @Size(min = 10, max = 11)
     String phone,
