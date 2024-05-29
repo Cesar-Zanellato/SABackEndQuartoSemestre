@@ -29,4 +29,6 @@ public class Delivery {
     private FeeDelivery feeDelivery;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @OneToOne
+    private User user;
 }

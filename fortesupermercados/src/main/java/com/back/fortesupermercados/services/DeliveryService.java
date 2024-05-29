@@ -62,7 +62,8 @@ public class DeliveryService {
             delivery.getDataTime(), 
             delivery.getDeliveryTime(), 
             delivery.getFeeDelivery(), 
-            delivery.getStatus()
+            delivery.getStatus(),
+            delivery.getUser()
         );
 
         return output;
@@ -75,6 +76,7 @@ public class DeliveryService {
         delivery.setDeliveryTime(input.deliveryTime());
         delivery.setFeeDelivery(input.feeDelivery());
         delivery.setStatus(input.status());
+        delivery.setUser(input.user());
 
         return delivery;
     }

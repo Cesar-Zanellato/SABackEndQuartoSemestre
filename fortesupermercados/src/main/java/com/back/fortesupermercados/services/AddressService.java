@@ -62,7 +62,6 @@ public class AddressService {
             address.getId(), 
             address.getNameStreet(), 
             address.getNumberStreet(), 
-            address.getNumberHouse(), 
             address.getCep(), 
             address.getPointReference(), 
             address.getComplement()
@@ -75,7 +74,6 @@ public class AddressService {
         Address address = new Address();
         address.setNameStreet(input.nameStreet());
         address.setNumberStreet(input.numberStreet());
-        address.setNumberHouse(input.numberHouse());
         address.setCep(input.cep());
         address.setPointReference(input.pointReference());
         address.setComplement(input.complement());

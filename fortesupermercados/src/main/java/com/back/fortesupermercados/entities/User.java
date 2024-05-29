@@ -1,7 +1,6 @@
 package com.back.fortesupermercados.entities;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -31,8 +29,6 @@ public class User implements UserDetails{
     private Address address;
     @OneToOne
     private Shopping shopping;
-    @OneToMany
-    private List<Delivery> delivery;
 
 
     @Override

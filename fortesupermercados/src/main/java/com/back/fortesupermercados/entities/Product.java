@@ -12,14 +12,13 @@ import lombok.NoArgsConstructor;
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Product {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private Long internalCode;
-    private Long codeProduct;
+    // private Long internalCode;
+    // private Long codeProduct;
     private String name;
     private String valueSale; 
     private String valuePurchase;
-    private String percentageProfit;
     private String promotion;
     private String image;
     private String stock;

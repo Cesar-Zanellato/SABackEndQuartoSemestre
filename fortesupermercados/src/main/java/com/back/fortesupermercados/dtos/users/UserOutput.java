@@ -1,9 +1,6 @@
 package com.back.fortesupermercados.dtos.users;
 
-import java.util.List;
-
 import com.back.fortesupermercados.entities.Address;
-import com.back.fortesupermercados.entities.Delivery;
 
 public record UserOutput(
     Long id,
@@ -11,6 +8,5 @@ public record UserOutput(
     String email,
     String phone,
     String cpf,
-    Address address,
-    List<Delivery> delivery
+    Address address
 ){}

@@ -70,7 +70,7 @@ public class ProductService {
             return null;
         }
         ProductOutput output = new ProductOutput(
-            product.getCodeProduct(), 
+            // product.getCodeProduct(), 
             product.getName(),
             product.getValueSale(), 
             product.getPromotion(), 
@@ -84,12 +84,11 @@ public class ProductService {
 
     private Product convertInputToProduct(ProductInput input){
         Product product = new Product();
-        product.setInternalCode(input.internalCode());
-        product.setCodeProduct(input.codeProduct());
+        // product.setInternalCode(input.internalCode());
+        // product.setCodeProduct(input.codeProduct());
         product.setName(input.name());
         product.setValueSale(input.valueSale());
         product.setValuePurchase(input.valuePurchase());
-        product.setPercentageProfit(input.percentageProfit());
         product.setImage(input.image());
         product.setStock(input.stock());
         product.setAmount(input.amount());

@@ -67,8 +67,7 @@ public class UserService implements UserDetailsService{
             user.getEmail(), 
             user.getPhone(), 
             user.getCpf(), 
-            user.getAddress(), 
-            user.getDelivery()
+            user.getAddress()
         );
 
         return output;

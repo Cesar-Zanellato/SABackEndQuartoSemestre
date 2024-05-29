@@ -15,7 +15,6 @@ public class Address {
     private Long id;
     private String nameStreet;
     private Short numberStreet; 
-    private Short numberHouse;
     private String cep;
     private String pointReference;
     private String complement;
