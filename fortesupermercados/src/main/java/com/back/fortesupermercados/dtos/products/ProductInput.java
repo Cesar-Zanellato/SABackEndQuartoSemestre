@@ -1,5 +1,7 @@
 package com.back.fortesupermercados.dtos.products;
 
+import com.back.fortesupermercados.entities.ProductStock;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -20,8 +22,7 @@ public record ProductInput(
     String valuePurchase,
     // @NotNull
     String image,
-    @NotNull
-    String stock,
     @NotBlank
-    String amount
+    String amount,
+    ProductStock productStock
 ){}

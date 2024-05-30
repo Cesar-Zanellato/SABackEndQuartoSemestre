@@ -1,9 +1,12 @@
 package com.back.fortesupermercados.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -12,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Product {
     
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // private Long internalCode;
     // private Long codeProduct;
@@ -21,11 +24,12 @@ public class Product {
     private String valuePurchase;
     private String promotion;
     private String image;
-    private String stock;
     private String amount;
-    @OneToOne
+    @ManyToOne
     private Category category;
-    @OneToOne
+    @ManyToOne
     private Subcategory subcategory;
+    @OneToOne(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private ProductStock productStock;
 
 }

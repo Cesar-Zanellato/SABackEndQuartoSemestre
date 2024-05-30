@@ -1,5 +1,7 @@
 package com.back.fortesupermercados.dtos.products;
 
+import com.back.fortesupermercados.entities.ProductStock;
+
 public record ProductOutput( 
     
     // Long codeProduct,
@@ -7,6 +9,6 @@ public record ProductOutput(
     String valueSale,
     String promotion,
     String image,
-    String stock,
-    String amount
+    String amount,
+    ProductStock productStock
 ){}

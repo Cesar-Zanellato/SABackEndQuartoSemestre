@@ -22,7 +22,8 @@ import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.services.ProductService;
 
-@RestController @Validated
+@RestController 
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/products")
 public class ProductController {
@@ -31,8 +32,8 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product exemplo){
-        List<ProductOutput> list = service.list(page, exemplo);
+    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example){
+        List<ProductOutput> list = service.list(page, example);
         return ResponseEntity.ok(list);
     }
 

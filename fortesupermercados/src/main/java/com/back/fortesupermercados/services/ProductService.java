@@ -14,11 +14,16 @@ import com.back.fortesupermercados.dtos.products.ProductInput;
 import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.repositories.ProductRepository;
+import com.back.fortesupermercados.repositories.ProductStockRepository;
 
 @Service
 public class ProductService {
+    
     @Autowired
     ProductRepository repository;
+    
+    @Autowired
+    ProductStockRepository repositoryStock;
 
     @Transactional
     public ProductOutput create(ProductInput input){
@@ -29,6 +34,8 @@ public class ProductService {
     }
 
     public List<ProductOutput> list(Pageable page, Product productExemplo){
+        
+
 
         ExampleMatcher matcher = ExampleMatcher
                                         .matching()
@@ -38,10 +45,11 @@ public class ProductService {
         Example<Product> exemplo = Example.of(productExemplo, matcher);
 
         return repository
-        .findAll(exemplo, page)
-        .stream()
-        .map(product -> convertProductToOutput(product))
-        .toList();
+                        .findAll(exemplo, page)
+                        .stream()
+                        .filter(product -> product.getProductStock() != null && product.getProductStock().getQuantity() > 0)
+                        .map(product -> convertProductToOutput(product))
+                        .toList();
     }
 
     public ProductOutput read(Long id){
@@ -75,8 +83,8 @@ public class ProductService {
             product.getValueSale(), 
             product.getPromotion(), 
             product.getImage(), 
-            product.getStock(), 
-            product.getAmount()
+            product.getAmount(),
+            product.getProductStock()
         );
 
         return output;
@@ -90,8 +98,8 @@ public class ProductService {
         product.setValueSale(input.valueSale());
         product.setValuePurchase(input.valuePurchase());
         product.setImage(input.image());
-        product.setStock(input.stock());
         product.setAmount(input.amount());
+        product.setProductStock(input.productStock());
 
         return product;
     }

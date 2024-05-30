@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.back.fortesupermercados.entities.Category;
 import com.back.fortesupermercados.entities.Product;
+import com.back.fortesupermercados.entities.ProductStock;
 import com.back.fortesupermercados.entities.Subcategory;
 import com.back.fortesupermercados.repositories.CategoryRepository;
 import com.back.fortesupermercados.repositories.ProductRepository;
@@ -49,6 +50,8 @@ public class DataLoader implements ApplicationRunner{
     public void run(ApplicationArguments args) {
         Map<String, Category> categoryMap = new HashMap<>();
         Map<String, Subcategory> subcategoryMap = new HashMap<>();
+        ProductStock productStock = new ProductStock();
+        productStock.setQuantity(100);
 
         for (String categoryName : categories) {
             Category category = new Category();
@@ -69,11 +72,11 @@ public class DataLoader implements ApplicationRunner{
         }
 
         List<Product> products = List.of(
-            new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", "2.04", null, null, "100", "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ")),
-            new Product(null, "Arroz Branco Tio João 1kg", "11.34", "3.40", null, null, "100", "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ")),
-            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", "3.17", null, null, "100", "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ")),
-            new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", "2.20", null, null, "100", "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ")),
-            new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 2kg", "16.68", "5.00", "14.58", null, "100", "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ")),
+            new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", "2.04", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), productStock)
+            // new Product(null, "Arroz Branco Tio João 1kg", "11.34", "3.40", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
+            // new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", "3.17", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
+            // new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", "2.20", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
+            // new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 2kg", "16.68", "5.00", "14.58", null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null)
             
         );
 
