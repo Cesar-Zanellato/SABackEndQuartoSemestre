@@ -31,4 +31,8 @@ public class Product {
     @OneToOne(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private ProductStock productStock;
 
+    public void setProductStock(ProductStock productStock) {
+        this.productStock = productStock;
+        productStock.setProduct(this);
+    }
 }
