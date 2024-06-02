@@ -3,6 +3,7 @@ package com.back.fortesupermercados.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.back.fortesupermercados.dtos.shopping.ShoppingInput;
 import com.back.fortesupermercados.dtos.shopping.ShoppingOutput;
+import com.back.fortesupermercados.entities.Shopping;
 import com.back.fortesupermercados.services.ShoppingService;
 
 @RestController @Validated
@@ -29,8 +31,8 @@ public class ShoppingController {
     private ShoppingService service;
 
     @GetMapping
-    public ResponseEntity<List<ShoppingOutput>> list(){
-        List<ShoppingOutput> list = service.list();
+    public ResponseEntity<List<ShoppingOutput>> list(Pageable page, Shopping example){
+        List<ShoppingOutput> list = service.list(page, example);
         return ResponseEntity.ok(list);
     }
     

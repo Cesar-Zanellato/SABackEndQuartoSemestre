@@ -3,6 +3,10 @@ package com.back.fortesupermercados.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,12 +29,20 @@ public class ShoppingService {
         return convertShoppingToOutput(shopping);
     }
 
-    public List<ShoppingOutput> list(){
+    public List<ShoppingOutput> list(Pageable page, Shopping shoppingExemplo){
+
+        ExampleMatcher matcher = ExampleMatcher
+                                        .matching()
+                                        .withIgnoreCase()
+                                        .withStringMatcher(StringMatcher.CONTAINING);
+
+        Example<Shopping> exemplo = Example.of(shoppingExemplo, matcher);
+
         return repository
-        .findAll()
-        .stream()
-        .map(shopping -> convertShoppingToOutput(shopping))
-        .toList();
+                    .findAll(exemplo, page)
+                    .stream()
+                    .map(shopping -> convertShoppingToOutput(shopping))
+                    .toList();
     }
 
     public ShoppingOutput read(Long id){
