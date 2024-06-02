@@ -18,8 +18,6 @@ public record ProductInput(
     String name,
     @NotBlank
     String valueSale,
-    @NotBlank
-    String valuePurchase,
     // @NotNull
     String image,
     @NotBlank

@@ -96,7 +96,6 @@ public class ProductService {
         // product.setCodeProduct(input.codeProduct());
         product.setName(input.name());
         product.setValueSale(input.valueSale());
-        product.setValuePurchase(input.valuePurchase());
         product.setImage(input.image());
         product.setAmount(input.amount());
         product.setProductStock(input.productStock());

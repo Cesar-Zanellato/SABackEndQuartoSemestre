@@ -21,7 +21,6 @@ public class Product {
     // private Long codeProduct;
     private String name;
     private String valueSale; 
-    private String valuePurchase;
     private String promotion;
     private String image;
     private String amount;
