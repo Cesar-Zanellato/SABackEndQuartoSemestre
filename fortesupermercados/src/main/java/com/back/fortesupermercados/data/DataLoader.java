@@ -9,13 +9,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.back.fortesupermercados.entities.Address;
 import com.back.fortesupermercados.entities.Category;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.entities.ProductStock;
+import com.back.fortesupermercados.entities.Shopping;
 import com.back.fortesupermercados.entities.Subcategory;
+import com.back.fortesupermercados.entities.User;
+import com.back.fortesupermercados.repositories.AddressRepository;
 import com.back.fortesupermercados.repositories.CategoryRepository;
 import com.back.fortesupermercados.repositories.ProductRepository;
+import com.back.fortesupermercados.repositories.ShoppingRepository;
 import com.back.fortesupermercados.repositories.SubcategoryRepository;
+import com.back.fortesupermercados.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -25,12 +31,19 @@ public class DataLoader implements ApplicationRunner{
     private CategoryRepository categoryRepository;
     private SubcategoryRepository subcategoryRepository;
     private ProductRepository productRepository;
+    private ShoppingRepository shoppingRepository;
+    private AddressRepository addressRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public DataLoader(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, ProductRepository productRepository) {
+    public DataLoader(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, ProductRepository productRepository, ShoppingRepository shoppingRepository,AddressRepository addressRepository, UserRepository userRepository) {
         this.subcategoryRepository = subcategoryRepository;
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
+        this.shoppingRepository = shoppingRepository;
+        this.addressRepository = addressRepository;
+        this.userRepository = userRepository;
+
     }
 
     List<String> categories = List.of(
@@ -76,8 +89,8 @@ public class DataLoader implements ApplicationRunner{
             new Product(null, "Açúcar União Refinado 1kg", "6.67", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
             new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
             new Product(null, "Açúcar Demerara Naturale União 1kg", "8.24", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10,70", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Refinado Caravelas 5kg", "35,79", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10.70", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
             
             new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Parboilizado Urbano 5kg", "39,32", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
@@ -134,8 +147,21 @@ public class DataLoader implements ApplicationRunner{
             productRepository.save(product);
         });
 
-            
-    }
+        //Shopping
+        List<Product> shoppingProducts = products.subList(0, 5); // Exemplo: primeiros 5 produtos
+        float totalPrice = shoppingProducts.stream().map(product -> Float.parseFloat(product.getValueSale())).reduce(0.0f, Float::sum);
+        int quantityProducts = shoppingProducts.size();
+        
+        Shopping shopping = new Shopping(null, shoppingProducts, totalPrice, quantityProducts);
+        shoppingRepository.save(shopping);
 
+        //User
+        User user = new User(null, "Cesar", "cesar@gmail.com", "48988645111", "11241367973", "123456789", null, null);
+        userRepository.save(user);
+
+        //Address
+        Address address = new Address(null, "Rua da Alegria", 26, "88056140", "Primeiro residencial da rua", "Apto 16", user);
+        addressRepository.save(address);
+    }
 }
 

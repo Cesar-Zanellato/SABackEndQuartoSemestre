@@ -4,7 +4,7 @@ public record AddressOutput(
     
     Long id,
     String nameStreet,
-    Short numberStreet,
+    Integer numberStreet,
     String cep,
     String pointReference,
     String complement

@@ -8,7 +8,7 @@ public record AddressInput(
     @NotBlank @Size(max = 255)
     String nameStreet,
     @NotBlank
-    Short numberStreet,
+    Integer numberStreet,
     @NotBlank @Size(min = 8, max = 8)
     String cep,
     @NotBlank @Size(max = 255)
