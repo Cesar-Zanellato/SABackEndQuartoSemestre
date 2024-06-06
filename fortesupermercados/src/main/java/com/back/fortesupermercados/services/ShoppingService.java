@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.back.fortesupermercados.dtos.shopping.ShoppingInput;
 import com.back.fortesupermercados.dtos.shopping.ShoppingOutput;
+import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.entities.Shopping;
+import com.back.fortesupermercados.repositories.ProductStockRepository;
 import com.back.fortesupermercados.repositories.ShoppingRepository;
 
 @Service
@@ -21,8 +23,24 @@ public class ShoppingService {
     @Autowired
     ShoppingRepository repository;
 
+    @Autowired
+    ProductStockRepository productStockRepository;
+
     @Transactional
     public ShoppingOutput create(ShoppingInput input){
+
+        List<Product> products = input.product();
+        for (Product product : products) {
+            if (!productStockRepository.isProductInStock(product.getId())) {
+                throw new IllegalArgumentException("Product with id " + product.getId() + " is not in stock");
+            }
+
+            int availableStock = productStockRepository.getProductStockQuantity(product.getId());
+            if (availableStock <= 0) {
+                throw new IllegalArgumentException("Product with id " + product.getId() + " has no stock available");
+            }
+        }
+
         Shopping shopping = convertInputToShopping(input);
         shopping = repository.save(shopping);
 

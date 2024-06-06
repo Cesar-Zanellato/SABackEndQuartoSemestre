@@ -64,7 +64,8 @@ public class AddressService {
             address.getNumberStreet(), 
             address.getCep(), 
             address.getPointReference(), 
-            address.getComplement()
+            address.getComplement(),
+            address.getUser()
         );
 
         return output;
@@ -77,6 +78,7 @@ public class AddressService {
         address.setCep(input.cep());
         address.setPointReference(input.pointReference());
         address.setComplement(input.complement());
+        address.setUser(input.user());
 
         return address;
     }

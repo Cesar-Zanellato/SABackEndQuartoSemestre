@@ -1,6 +1,7 @@
 package com.back.fortesupermercados.data;
 
 import java.util.Map;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,13 +12,17 @@ import org.springframework.stereotype.Component;
 
 import com.back.fortesupermercados.entities.Address;
 import com.back.fortesupermercados.entities.Category;
+import com.back.fortesupermercados.entities.Delivery;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.entities.ProductStock;
 import com.back.fortesupermercados.entities.Shopping;
 import com.back.fortesupermercados.entities.Subcategory;
 import com.back.fortesupermercados.entities.User;
+import com.back.fortesupermercados.entities.enums.FeeDelivery;
+import com.back.fortesupermercados.entities.enums.Status;
 import com.back.fortesupermercados.repositories.AddressRepository;
 import com.back.fortesupermercados.repositories.CategoryRepository;
+import com.back.fortesupermercados.repositories.DeliveryRepository;
 import com.back.fortesupermercados.repositories.ProductRepository;
 import com.back.fortesupermercados.repositories.ShoppingRepository;
 import com.back.fortesupermercados.repositories.SubcategoryRepository;
@@ -34,15 +39,17 @@ public class DataLoader implements ApplicationRunner{
     private ShoppingRepository shoppingRepository;
     private AddressRepository addressRepository;
     private UserRepository userRepository;
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
-    public DataLoader(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, ProductRepository productRepository, ShoppingRepository shoppingRepository,AddressRepository addressRepository, UserRepository userRepository) {
+    public DataLoader(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, ProductRepository productRepository, ShoppingRepository shoppingRepository,AddressRepository addressRepository, UserRepository userRepository, DeliveryRepository deliveryRepository) {
         this.subcategoryRepository = subcategoryRepository;
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.shoppingRepository = shoppingRepository;
         this.addressRepository = addressRepository;
         this.userRepository = userRepository;
+        this.deliveryRepository = deliveryRepository;
 
     }
 
@@ -147,7 +154,7 @@ public class DataLoader implements ApplicationRunner{
             productRepository.save(product);
         });
 
-        //Shopping
+        // Shopping
         List<Product> shoppingProducts = products.subList(0, 5); // Exemplo: primeiros 5 produtos
         float totalPrice = shoppingProducts.stream().map(product -> Float.parseFloat(product.getValueSale())).reduce(0.0f, Float::sum);
         int quantityProducts = shoppingProducts.size();
@@ -162,6 +169,11 @@ public class DataLoader implements ApplicationRunner{
         //Address
         Address address = new Address(null, "Rua da Alegria", 26, "88056140", "Primeiro residencial da rua", "Apto 16", user);
         addressRepository.save(address);
+
+        //Delivery
+        Delivery delivery = new Delivery(null, shopping, LocalDateTime.now(), "45", FeeDelivery.RS13, Status.AGUARDANDO_SEPARACAO, user);
+        deliveryRepository.save(delivery);
+
     }
 }
 
