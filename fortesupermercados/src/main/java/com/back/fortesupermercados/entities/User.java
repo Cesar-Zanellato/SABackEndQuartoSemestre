@@ -1,8 +1,10 @@
 package com.back.fortesupermercados.entities;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -33,6 +35,8 @@ public class User implements UserDetails{
     private Address address;
     @OneToOne
     private Shopping shopping;
+
+    private Boolean isAdmin = false;
     
 
     public void setAddress(Address address) {
@@ -42,7 +46,11 @@ public class User implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;    
+        if (isAdmin) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }else{
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     }
 
     @Override

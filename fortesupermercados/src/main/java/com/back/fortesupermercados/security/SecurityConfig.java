@@ -49,13 +49,68 @@ public class SecurityConfig {
         builder.userDetailsService(userService).passwordEncoder(getPasswordEncoder());
         var authentication = builder.build();
 
-        http
-            .csrf(csrf -> csrf.disable())
+        http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST, "/users")
-                       .permitAll()
+                request
+                       .requestMatchers("/users")
+                       .hasRole("USER")
+
                        .requestMatchers(HttpMethod.POST, "/login")
                        .permitAll()
+                       .requestMatchers(HttpMethod.POST, "/category")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.PUT, "/category")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.GET, "/category")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/category")
+                       .hasRole("ADMIN")
+
+                       .requestMatchers(HttpMethod.POST, "/subcategory")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.PUT, "/subcategory")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.GET, "/subcategory")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/subcategory")
+                       .hasRole("ADMIN")
+
+                       .requestMatchers(HttpMethod.POST, "/delivery")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.PUT, "/delivery")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.GET, "/delivery")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/delivery")
+                       .permitAll()
+
+                       .requestMatchers(HttpMethod.POST, "/product")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.PUT, "/product")
+                       .hasRole("ADMIN")
+                       .requestMatchers(HttpMethod.GET, "/product")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/product")
+                       .hasRole("ADMIN")
+
+                       .requestMatchers(HttpMethod.POST, "/shopping")
+                       .hasRole("USER")
+                       .requestMatchers(HttpMethod.PUT, "/shopping")
+                       .hasRole("USER")
+                       .requestMatchers(HttpMethod.GET, "/shopping")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/shopping")
+                       .hasRole("USER")
+
+                       .requestMatchers(HttpMethod.POST, "/address")
+                       .hasRole("USER")
+                       .requestMatchers(HttpMethod.PUT, "/address")
+                       .hasRole("USER")
+                       .requestMatchers(HttpMethod.GET, "/address")
+                       .permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/address")
+                       .hasRole("USER")
+
                        .anyRequest()
                        .authenticated()
                        )

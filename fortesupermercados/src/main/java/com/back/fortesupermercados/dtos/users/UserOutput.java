@@ -8,5 +8,7 @@ public record UserOutput(
     String email,
     String phone,
     String cpf,
-    Address address
+    Address address,
+
+    boolean isAdmin
 ){}

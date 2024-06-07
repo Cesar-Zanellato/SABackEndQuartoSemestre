@@ -163,7 +163,7 @@ public class DataLoader implements ApplicationRunner{
         shoppingRepository.save(shopping);
 
         //User
-        User user = new User(null, "Cesar", "cesar@gmail.com", "48988645111", "11241367973", "123456789", null, null);
+        User user = new User(null, "Cesar", "cesar@gmail.com", "48988645111", "11241367973", "123456789", null, null, null);
         userRepository.save(user);
 
         //Address
