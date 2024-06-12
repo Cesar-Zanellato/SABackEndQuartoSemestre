@@ -14,6 +14,7 @@ import com.back.fortesupermercados.dtos.users.UserInput;
 import com.back.fortesupermercados.dtos.users.UserOutput;
 import com.back.fortesupermercados.entities.User;
 import com.back.fortesupermercados.repositories.UserRepository;
+import com.back.fortesupermercados.security.CustomUserDetails;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -88,15 +89,16 @@ public class UserService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = repository.findByEmail(email);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        return org.springframework.security.core.userdetails.User
-                .builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
+    User user = repository.findByEmail(email);
+    if (user == null) {
+        throw new UsernameNotFoundException("User not found");
     }
+
+    return new CustomUserDetails(
+            user.getId(),
+            user.getUsername(),
+            user.getPassword(),
+            user.getAuthorities()
+    );
+}
 }

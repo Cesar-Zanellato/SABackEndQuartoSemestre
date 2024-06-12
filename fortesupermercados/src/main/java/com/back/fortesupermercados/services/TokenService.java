@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.back.fortesupermercados.security.CustomUserDetails;
 
 @Service
 public class TokenService {
@@ -16,9 +17,11 @@ public class TokenService {
 
     public String createToken(UserDetails userDetails) {
         var algoritmo = Algorithm.HMAC256(secret);
+        CustomUserDetails customUser = (CustomUserDetails) userDetails;
         return JWT.create()
                 .withIssuer(issuer)
                 .withSubject(userDetails.getUsername())
+                .withClaim("id", customUser.getId())
                 .withExpiresAt(getExpiration())
                 .sign(algoritmo);
     }
@@ -27,13 +30,14 @@ public class TokenService {
         return Instant.now().plusSeconds(expiration * 60);
     }
 
-    public String validToken(String jwt) {
+    public Long validToken(String jwt) {
         var algorithm = Algorithm.HMAC256(secret);
-        return JWT.require(algorithm)
+        var verifier = JWT.require(algorithm)
                 .withIssuer(issuer)
-                .build()
-                .verify(jwt)
-                .getSubject();
+                .build();
+        
+        var decodedJWT = verifier.verify(jwt);
+        return decodedJWT.getClaim("id").asLong(); // Recupera o ID do usuário
     }
 
 }

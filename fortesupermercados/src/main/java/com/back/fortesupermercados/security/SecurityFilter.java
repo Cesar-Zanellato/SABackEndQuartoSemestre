@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.back.fortesupermercados.entities.User;
 import com.back.fortesupermercados.repositories.UserRepository;
 import com.back.fortesupermercados.services.TokenService;
 
@@ -34,12 +35,15 @@ public class SecurityFilter extends OncePerRequestFilter {
             
         var token = getToken(request);
         if (token != null) {
-            var email = service.validToken(token);
-            var user = repository.findByEmail(email);
-            var auth = new UsernamePasswordAuthenticationToken(
-                user, null, user.getAuthorities()
-            );
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            Long userId = service.validToken(token);
+            User user = repository.findById(userId).orElse(null);
+            
+            if (user != null) {
+                var auth = new UsernamePasswordAuthenticationToken(
+                    user, null, user.getAuthorities()
+                );
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
         }
 
         filterChain.doFilter(request, response);
@@ -48,9 +52,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request){
         var auth = request.getHeader("Authorization");
         if (auth != null) {
-            return auth.replace("Bearer", "");
+            return auth.replace("Bearer", "").trim();
         }
         return null;
     }
-    
 }

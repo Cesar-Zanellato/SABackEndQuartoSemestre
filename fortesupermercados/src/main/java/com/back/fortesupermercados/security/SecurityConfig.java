@@ -55,7 +55,7 @@ public class SecurityConfig {
                        .requestMatchers("/users")
                        .hasRole("USER")
 
-                       .requestMatchers(HttpMethod.POST, "/login")
+                       .requestMatchers("/login")
                        .permitAll()
                        .requestMatchers(HttpMethod.POST, "/category")
                        .hasRole("ADMIN")
