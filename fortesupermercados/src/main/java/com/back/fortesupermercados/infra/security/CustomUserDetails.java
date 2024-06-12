@@ -1,4 +1,4 @@
-package com.back.fortesupermercados.security;
+package com.back.fortesupermercados.infra.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

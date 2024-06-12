@@ -1,4 +1,4 @@
-package com.back.fortesupermercados.security;
+package com.back.fortesupermercados.infra.security;
 
 import java.io.IOException;
 

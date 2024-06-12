@@ -16,7 +16,6 @@ import com.back.fortesupermercados.services.TokenService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/login")
 public class LoginController {
     @Autowired
     private TokenService service;
@@ -24,7 +23,7 @@ public class LoginController {
     @Autowired
     private AuthenticationManager manager;
 
-    @PostMapping
+    @PostMapping("/login")
     public String login(@RequestBody LoginInput input){
         var user = new UsernamePasswordAuthenticationToken(
             input.getEmail(), input.getPassword()     

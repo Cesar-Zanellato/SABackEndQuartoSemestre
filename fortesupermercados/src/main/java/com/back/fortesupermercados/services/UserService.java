@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.back.fortesupermercados.dtos.users.UserInput;
 import com.back.fortesupermercados.dtos.users.UserOutput;
 import com.back.fortesupermercados.entities.User;
+import com.back.fortesupermercados.infra.security.CustomUserDetails;
 import com.back.fortesupermercados.repositories.UserRepository;
-import com.back.fortesupermercados.security.CustomUserDetails;
 
 @Service
 public class UserService implements UserDetailsService{

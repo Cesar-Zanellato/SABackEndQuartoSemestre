@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.back.fortesupermercados.security.CustomUserDetails;
+import com.back.fortesupermercados.infra.security.CustomUserDetails;
 
 @Service
 public class TokenService {
