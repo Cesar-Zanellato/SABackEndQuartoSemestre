@@ -61,13 +61,13 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(request ->
                 request
-                    .requestMatchers("/users", "/shopping", "/address")
+                    .requestMatchers("/shopping", "/address")
                     .hasRole("USER")
 
-                    .requestMatchers(HttpMethod.POST , "users")
+                    .requestMatchers(HttpMethod.POST , "users", "login")
                     .permitAll()
 
-                    .requestMatchers("/login", "/delivery")
+                    .requestMatchers("/delivery")
                     .permitAll()
                     .requestMatchers(
                         "/v3/api-docs/*",
