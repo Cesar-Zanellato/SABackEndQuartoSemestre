@@ -44,18 +44,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserOutput> read(@PathVariable Long id){
         UserOutput user = service.read(id);
-        if(user == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserOutput> update(@PathVariable Long id, @RequestBody UserInput user){
         UserOutput output = service.update(id, user);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 

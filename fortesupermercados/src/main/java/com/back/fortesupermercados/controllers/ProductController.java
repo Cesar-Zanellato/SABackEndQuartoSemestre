@@ -47,18 +47,12 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductOutput> read(@PathVariable Long id){
         ProductOutput product = service.read(id);
-        if(product == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductOutput> update(@PathVariable Long id, @RequestBody ProductInput product){
         ProductOutput output = service.update(id, product);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 

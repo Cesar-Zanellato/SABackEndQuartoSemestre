@@ -38,10 +38,8 @@ public class LogFilter extends OncePerRequestFilter {
     ContentCachingRequestWrapper req = new ContentCachingRequestWrapper(request);
     ContentCachingResponseWrapper resp = new ContentCachingResponseWrapper(response);
 
-    // Execution request chain
     filterChain.doFilter(req, resp);
     
-    // Get Cache
     byte[] responseBody = resp.getContentAsByteArray();
     byte[] requestBody = req.getContentAsByteArray();
 
@@ -50,7 +48,6 @@ public class LogFilter extends OncePerRequestFilter {
     log.info("Response\n STATUS: {}\n BODY:{}", resp.getStatus(), new String(responseBody, StandardCharsets.UTF_8));
     log.info("Response BODY: {}", new String(requestBody, StandardCharsets.UTF_8));
     
-    // Finally remember to respond to the client with the cached data.
     resp.copyBodyToResponse();
   }
 }

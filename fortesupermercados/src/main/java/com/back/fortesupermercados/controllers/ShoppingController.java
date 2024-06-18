@@ -46,18 +46,12 @@ public class ShoppingController {
     @GetMapping("/{id}")
     public ResponseEntity<ShoppingOutput> read(@PathVariable Long id){
         ShoppingOutput shopping = service.read(id);
-        if(shopping == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(shopping);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ShoppingOutput> update(@PathVariable Long id, @RequestBody ShoppingInput shopping){
         ShoppingOutput output = service.update(id, shopping);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 

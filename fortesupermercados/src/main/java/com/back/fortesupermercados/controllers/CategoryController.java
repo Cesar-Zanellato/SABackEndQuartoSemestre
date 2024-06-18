@@ -43,18 +43,12 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<CategoryOutput> read(@PathVariable Long id){
         CategoryOutput category = service.read(id);
-        if(category == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(category);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryOutput> update(@PathVariable Long id, @RequestBody CategoryInput category){
         CategoryOutput output = service.update(id, category);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 

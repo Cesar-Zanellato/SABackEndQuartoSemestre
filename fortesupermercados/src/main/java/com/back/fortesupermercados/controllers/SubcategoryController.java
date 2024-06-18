@@ -44,18 +44,12 @@ public class SubcategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<SubcategoryOutput> read(@PathVariable Long id){
         SubcategoryOutput subcategory = service.read(id);
-        if(subcategory == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(subcategory);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SubcategoryOutput> update(@PathVariable Long id, @RequestBody SubcategoryInput subcategory){
         SubcategoryOutput output = service.update(id, subcategory);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 

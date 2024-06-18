@@ -44,18 +44,12 @@ public class DeliveryController {
     @GetMapping("/{id}")
     public ResponseEntity<DeliveryOutput> read(@PathVariable Long id){
         DeliveryOutput pedido = service.read(id);
-        if(pedido == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(pedido);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<DeliveryOutput> update(@PathVariable Long id, @RequestBody DeliveryInput pedido){
         DeliveryOutput saida = service.update(id, pedido);
-        if(saida == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(saida);
     }
 

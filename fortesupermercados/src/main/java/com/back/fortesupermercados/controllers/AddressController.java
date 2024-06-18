@@ -44,18 +44,12 @@ public class AddressController {
     @GetMapping("/{id}")
     public ResponseEntity<AddressOutput> read(@PathVariable Long id){
         AddressOutput address = service.read(id);
-        if(address == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(address);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AddressOutput> update(@PathVariable Long id, @RequestBody AddressInput address){
         AddressOutput output = service.update(id, address);
-        if(output == null){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(output);
     }
 
