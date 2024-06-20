@@ -51,12 +51,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
-        // AuthenticationManagerBuilder builder = http.getSharedObject(
-        //     AuthenticationManagerBuilder.class
-        // );
-        // builder.userDetailsService(userService).passwordEncoder(getPasswordEncoder());
-        // var authentication = builder.build();
-
         return http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(request ->
@@ -65,6 +59,8 @@ public class SecurityConfig {
                     .hasRole("USER")
 
                     .requestMatchers(HttpMethod.POST , "users", "login")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.GET , "users")
                     .permitAll()
 
                     .requestMatchers("/delivery")
