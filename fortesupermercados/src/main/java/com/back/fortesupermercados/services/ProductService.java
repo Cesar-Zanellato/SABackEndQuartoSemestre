@@ -1,6 +1,7 @@
 package com.back.fortesupermercados.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,79 +19,93 @@ import com.back.fortesupermercados.repositories.ProductStockRepository;
 
 @Service
 public class ProductService {
-    
+
     @Autowired
-    ProductRepository repository;
-    
+    ProductRepository productRepository;
+
     @Autowired
     ProductStockRepository repositoryStock;
 
     @Transactional
-    public ProductOutput create(ProductInput input){
+    public ProductOutput create(ProductInput input) {
         Product product = convertInputToProduct(input);
-        product = repository.save(product);
+        product = productRepository.save(product);
 
         return convertProductToOutput(product);
     }
 
-    public List<ProductOutput> list(Pageable page, Product productExemplo){
-        
-
+    public List<ProductOutput> list(Pageable page, Product productExemplo) {
 
         ExampleMatcher matcher = ExampleMatcher
-                                        .matching()
-                                        .withIgnoreCase()
-                                        .withStringMatcher(StringMatcher.CONTAINING);
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(StringMatcher.CONTAINING);
 
         Example<Product> exemplo = Example.of(productExemplo, matcher);
 
-        return repository
-                        .findAll(exemplo, page)
-                        .stream()
-                        .filter(product -> product.getProductStock() != null && product.getProductStock().getQuantity() > 0)
-                        .map(product -> convertProductToOutput(product))
-                        .toList();
+        return productRepository
+                .findAll(exemplo, page)
+                .stream()
+                .filter(product -> product.getProductStock() != null && product.getProductStock().getQuantity() > 0)
+                .map(product -> convertProductToOutput(product))
+                .toList();
     }
 
-    public ProductOutput read(Long id){
-        Product product = repository.findById(id).orElse(null);
+    @Transactional
+    public List<ProductOutput> getProductsByCategoryId(Long categoryId) {
+        List<Product> products = productRepository.findByCategoryId(categoryId);
+        return products.stream()
+                .map(this::convertProductToOutput)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<ProductOutput> getProductsBySubcategoryId(Long subcategoryId) {
+        List<Product> products = productRepository.findBySubcategoryId(subcategoryId);
+        return products.stream()
+                .map(this::convertProductToOutput)
+                .collect(Collectors.toList());
+    }
+
+    public ProductOutput read(Long id) {
+        Product product = productRepository.findById(id).orElse(null);
         return convertProductToOutput(product);
     }
 
     @Transactional
-    public ProductOutput update(Long id, ProductInput input){
-        if(repository.existsById(id)){
+    public ProductOutput update(Long id, ProductInput input) {
+        if (productRepository.existsById(id)) {
             Product product = convertInputToProduct(input);
             product.setId(id);
-            product = repository.save(product);
+            product = productRepository.save(product);
             return convertProductToOutput(product);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public void delete(Long id){
-        repository.deleteById(id);
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 
-    private ProductOutput convertProductToOutput(Product product){
-        if(product == null){
+    private ProductOutput convertProductToOutput(Product product) {
+        if (product == null) {
             return null;
         }
         ProductOutput output = new ProductOutput(
-            // product.getCodeProduct(), 
-            product.getName(),
-            product.getValueSale(), 
-            product.getPromotion(), 
-            product.getImage(), 
-            product.getAmount(),
-            product.getProductStock()
+                // product.getCodeProduct(), 
+                product.getName(),
+                product.getValueSale(),
+                product.getPromotion(),
+                product.getImage(),
+                product.getAmount(),
+                product.getProductStock()
         );
 
         return output;
     }
 
-    private Product convertInputToProduct(ProductInput input){
+    private Product convertInputToProduct(ProductInput input) {
         Product product = new Product();
         // product.setInternalCode(input.internalCode());
         // product.setCodeProduct(input.codeProduct());

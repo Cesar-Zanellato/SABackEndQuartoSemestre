@@ -17,44 +17,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.back.fortesupermercados.dtos.categories.CategoryInput;
 import com.back.fortesupermercados.dtos.categories.CategoryOutput;
+import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.services.CategoryService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
      
     @Autowired
-    private CategoryService service;
+    private CategoryService categoryService;
 
-    @GetMapping
-    public ResponseEntity<List<CategoryOutput>> list(){
-        List<CategoryOutput> list = service.list();
-        return ResponseEntity.ok(list);
-    }
-    
     @PostMapping
     public ResponseEntity<CategoryOutput> create(@RequestBody CategoryInput category){
-        CategoryOutput output = service.create(category);
+        CategoryOutput output = categoryService.create(category);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoryOutput> read(@PathVariable Long id){
-        CategoryOutput category = service.read(id);
-        return ResponseEntity.ok(category);
+    @GetMapping("/{categoryId}/subcategories")
+    public ResponseEntity<List<CategoryOutput>> getSubcategoriesByCategoryId(@PathVariable Long categoryId) {
+        List<CategoryOutput> subcategories = categoryService.getSubcategoriesByCategoryId(categoryId);
+        return ResponseEntity.ok(subcategories);
+    }
+
+    @GetMapping("/{categoryId}/products")
+    public ResponseEntity<List<ProductOutput>> getProductsByCategoryId(@PathVariable Long categoryId) {
+        List<ProductOutput> products = categoryService.getProductsByCategoryId(categoryId);
+        return ResponseEntity.ok(products);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryOutput> update(@PathVariable Long id, @RequestBody CategoryInput category){
-        CategoryOutput output = service.update(id, category);
+        CategoryOutput output = categoryService.update(id, category);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
-        service.delete(id);
+        categoryService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

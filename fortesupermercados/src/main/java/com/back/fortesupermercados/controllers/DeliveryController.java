@@ -22,7 +22,7 @@ import com.back.fortesupermercados.services.DeliveryService;
 
 @RestController @Validated
 @CrossOrigin("*")
-@RequestMapping("/delivery")
+@RequestMapping("/deliveries")
 public class DeliveryController {
     
     @Autowired

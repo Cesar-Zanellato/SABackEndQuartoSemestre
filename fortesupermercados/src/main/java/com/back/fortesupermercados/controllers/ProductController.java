@@ -29,36 +29,42 @@ import com.back.fortesupermercados.services.ProductService;
 public class ProductController {
 
     @Autowired
-    private ProductService service;
-
-    @GetMapping
-    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example){
-        List<ProductOutput> list = service.list(page, example);
-        return ResponseEntity.ok(list);
-    }
+    private ProductService productService;
 
     @PostMapping
     public ResponseEntity<ProductOutput> create(@RequestBody ProductInput product){
-        ProductOutput output = service.create(product);
+        ProductOutput output = productService.create(product);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example){
+        List<ProductOutput> list = productService.list(page, example);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/by-subcategory/{subcategoryId}")
+    public ResponseEntity<List<ProductOutput>> getProductsBySubcategoryId(@PathVariable Long subcategoryId) {
+        List<ProductOutput> products = productService.getProductsBySubcategoryId(subcategoryId);
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductOutput> read(@PathVariable Long id){
-        ProductOutput product = service.read(id);
+        ProductOutput product = productService.read(id);
         return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductOutput> update(@PathVariable Long id, @RequestBody ProductInput product){
-        ProductOutput output = service.update(id, product);
+        ProductOutput output = productService.update(id, product);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
-        service.delete(id);
+        productService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

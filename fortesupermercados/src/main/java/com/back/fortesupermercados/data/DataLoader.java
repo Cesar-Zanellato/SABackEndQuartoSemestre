@@ -85,7 +85,7 @@ public class DataLoader implements ApplicationRunner{
                 for (String subcategoryName : subcategories) {
                     Subcategory subcategory = new Subcategory();
                     subcategory.setName(subcategoryName);
-                    subcategory.setCategory(category);
+                    subcategory.setParentCategory(category);
                     subcategoryRepository.save(subcategory);
                     subcategoryMap.put(subcategoryName, subcategory);
                 }

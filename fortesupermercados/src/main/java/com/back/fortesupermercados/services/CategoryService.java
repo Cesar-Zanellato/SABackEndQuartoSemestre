@@ -1,6 +1,7 @@
 package com.back.fortesupermercados.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,41 +9,58 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.back.fortesupermercados.dtos.categories.CategoryInput;
 import com.back.fortesupermercados.dtos.categories.CategoryOutput;
+import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.entities.Category;
 import com.back.fortesupermercados.repositories.CategoryRepository;
 
 @Service
 public class CategoryService {
+    
     @Autowired
-    CategoryRepository repository;
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @Transactional
     public CategoryOutput create(CategoryInput input){
         Category category = convertInputToCategory(input);
-        category = repository.save(category);
+        category = categoryRepository.save(category);
 
         return convertCategoryToOutput(category);
     }
 
     public List<CategoryOutput> list(){
-        return repository
+        return categoryRepository
         .findAll()
         .stream()
         .map(category -> convertCategoryToOutput(category))
         .toList();
     }
 
+    public List<CategoryOutput> getSubcategoriesByCategoryId(Long categoryId) {
+        List<Category> subcategories = categoryRepository.findByParentCategoryId(categoryId);
+        return subcategories.stream()
+                .map(this::convertCategoryToOutput)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductOutput> getProductsByCategoryId(Long categoryId) {
+        List<ProductOutput> products = productService.getProductsByCategoryId(categoryId);
+        return products;
+    }
+
     public CategoryOutput read(Long id){
-        Category category = repository.findById(id).orElse(null);
+        Category category = categoryRepository.findById(id).orElse(null);
         return convertCategoryToOutput(category);
     }
 
     @Transactional
     public CategoryOutput update(Long id, CategoryInput input){
-        if(repository.existsById(id)){
+        if(categoryRepository.existsById(id)){
             Category category = convertInputToCategory(input);
             category.setId(id);
-            category = repository.save(category);
+            category = categoryRepository.save(category);
             return convertCategoryToOutput(category);
         }else{
             return null;
@@ -50,8 +68,12 @@ public class CategoryService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
+
+
+
+
 
     private CategoryOutput convertCategoryToOutput(Category category){
         if(category == null){
