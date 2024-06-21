@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,17 @@ import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.services.CategoryService;
 
 @RestController
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/categories")
 public class CategoryController {
-     
+
+    
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping
-    public ResponseEntity<CategoryOutput> create(@RequestBody CategoryInput category){
+    @PostMapping 
+    public ResponseEntity<CategoryOutput> create(@RequestBody CategoryInput category) {
         CategoryOutput output = categoryService.create(category);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
@@ -47,14 +50,14 @@ public class CategoryController {
         return ResponseEntity.ok(products);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CategoryOutput> update(@PathVariable Long id, @RequestBody CategoryInput category){
+    @PutMapping("/{id}") 
+    public ResponseEntity<CategoryOutput> update(@PathVariable Long id, @RequestBody CategoryInput category) {
         CategoryOutput output = categoryService.update(id, category);
         return ResponseEntity.ok(output);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    @DeleteMapping("/{id}") 
+    public ResponseEntity delete(@PathVariable Long id) {
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
     }

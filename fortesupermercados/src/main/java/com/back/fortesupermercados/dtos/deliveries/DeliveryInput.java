@@ -9,17 +9,17 @@ import com.back.fortesupermercados.entities.enums.Status;
 import jakarta.validation.constraints.NotNull;
 
 public record DeliveryInput(
-    @NotNull
-    Shopping shopping,
-    @NotNull
-    LocalDateTime dataTime,
-    @NotNull
-    String deliveryTime,
-    @NotNull
-    FeeDelivery feeDelivery,
-    @NotNull
-    Status status,
-    @NotNull
-    User user
+        @NotNull
+        Shopping shopping,
+        @NotNull
+        LocalDateTime dataTime,
+        @NotNull
+        String deliveryTime,
+        @NotNull
+        FeeDelivery feeDelivery,
+        @NotNull
+        Status status,
+        @NotNull
+        User user) {
 
-){}
+}

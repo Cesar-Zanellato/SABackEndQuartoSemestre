@@ -13,65 +13,65 @@ import com.back.fortesupermercados.repositories.AddressRepository;
 
 @Service
 public class AddressService {
-    
+
     @Autowired
     AddressRepository repository;
 
     @Transactional
-    public AddressOutput create(AddressInput input){
+    public AddressOutput create(AddressInput input) {
         Address address = convertInputToAddress(input);
         address = repository.save(address);
 
         return convertAddressToOutput(address);
     }
 
-    public List<AddressOutput> list(){
+    public List<AddressOutput> list() {
         return repository
-        .findAll()
-        .stream()
-        .map(address -> convertAddressToOutput(address))
-        .toList();
+                .findAll()
+                .stream()
+                .map(address -> convertAddressToOutput(address))
+                .toList();
     }
 
-    public AddressOutput read(Long id){
+    public AddressOutput read(Long id) {
         Address address = repository.findById(id).orElse(null);
         return convertAddressToOutput(address);
     }
 
     @Transactional
-    public AddressOutput update(Long id, AddressInput input){
-        if(repository.existsById(id)){
+    public AddressOutput update(Long id, AddressInput input) {
+        if (repository.existsById(id)) {
             Address address = convertInputToAddress(input);
             address.setId(id);
             address = repository.save(address);
             return convertAddressToOutput(address);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private AddressOutput convertAddressToOutput(Address address){
-        if(address == null){
+    private AddressOutput convertAddressToOutput(Address address) {
+        if (address == null) {
             return null;
         }
         AddressOutput output = new AddressOutput(
-            address.getId(), 
-            address.getNameStreet(), 
-            address.getNumberStreet(), 
-            address.getCep(), 
-            address.getPointReference(), 
-            address.getComplement(),
-            address.getUser()
+                address.getId(),
+                address.getNameStreet(),
+                address.getNumberStreet(),
+                address.getCep(),
+                address.getPointReference(),
+                address.getComplement(),
+                address.getUser()
         );
 
         return output;
     }
 
-    private Address convertInputToAddress(AddressInput input){
+    private Address convertInputToAddress(AddressInput input) {
         Address address = new Address();
         address.setNameStreet(input.nameStreet());
         address.setNumberStreet(input.numberStreet());

@@ -7,14 +7,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record ProductInput(
-    
-    @NotBlank @Size(max = 255)
-    String name,
-    @NotBlank
-    String valueSale,
-    @NotNull
-    String image,
-    @NotBlank
-    String amount,
-    ProductStock productStock
-){}
+        @NotBlank
+        @Size(max = 255)
+        String name,
+        @NotBlank
+        String valueSale,
+        @NotNull
+        String image,
+        @NotBlank
+        String amount,
+        ProductStock productStock) {
+
+}

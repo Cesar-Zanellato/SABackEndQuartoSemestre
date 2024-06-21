@@ -18,10 +18,14 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
-public class User implements UserDetails{
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements UserDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Column(unique = true)
@@ -29,7 +33,7 @@ public class User implements UserDetails{
     private String phone;
     private String cpf;
     private String password;
-    
+
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -37,7 +41,6 @@ public class User implements UserDetails{
     private Shopping shopping;
 
     private Boolean isAdmin = false;
-    
 
     public void setAddress(Address address) {
         this.address = address;
@@ -48,19 +51,19 @@ public class User implements UserDetails{
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (isAdmin) {
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }else{
+        } else {
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;    
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;    
+        return true;
     }
 
     @Override
@@ -70,11 +73,11 @@ public class User implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return true;    
+        return true;
     }
 
     @Override
     public String getUsername() {
-        return name;    
+        return name;
     }
 }

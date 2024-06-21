@@ -30,7 +30,6 @@ public class ProductService {
     public ProductOutput create(ProductInput input) {
         Product product = convertInputToProduct(input);
         product = productRepository.save(product);
-
         return convertProductToOutput(product);
     }
 
@@ -68,20 +67,21 @@ public class ProductService {
     }
 
     public ProductOutput read(Long id) {
-        Product product = productRepository.findById(id).orElse(null);
-        return convertProductToOutput(product);
+        return productRepository.findById(id)
+                .map(this::convertProductToOutput)
+                .orElse(null);
     }
 
     @Transactional
     public ProductOutput update(Long id, ProductInput input) {
-        if (productRepository.existsById(id)) {
-            Product product = convertInputToProduct(input);
-            product.setId(id);
-            product = productRepository.save(product);
-            return convertProductToOutput(product);
-        } else {
-            return null;
-        }
+        return productRepository.findById(id)
+                .map(existingProduct -> {
+                    Product updatedProduct = convertInputToProduct(input);
+                    updatedProduct.setId(id);
+                    updatedProduct = productRepository.save(updatedProduct);
+                    return convertProductToOutput(updatedProduct);
+                })
+                .orElse(null);
     }
 
     public void delete(Long id) {
@@ -93,7 +93,6 @@ public class ProductService {
             return null;
         }
         ProductOutput output = new ProductOutput(
-                // product.getCodeProduct(), 
                 product.getName(),
                 product.getValueSale(),
                 product.getPromotion(),
@@ -107,8 +106,6 @@ public class ProductService {
 
     private Product convertInputToProduct(ProductInput input) {
         Product product = new Product();
-        // product.setInternalCode(input.internalCode());
-        // product.setCodeProduct(input.codeProduct());
         product.setName(input.name());
         product.setValueSale(input.valueSale());
         product.setImage(input.image());

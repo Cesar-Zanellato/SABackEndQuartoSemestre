@@ -19,7 +19,7 @@ import com.back.fortesupermercados.repositories.ShoppingRepository;
 
 @Service
 public class ShoppingService {
-    
+
     @Autowired
     ShoppingRepository repository;
 
@@ -27,7 +27,7 @@ public class ShoppingService {
     ProductStockRepository productStockRepository;
 
     @Transactional
-    public ShoppingOutput create(ShoppingInput input){
+    public ShoppingOutput create(ShoppingInput input) {
 
         List<Product> products = input.product();
         for (Product product : products) {
@@ -47,58 +47,58 @@ public class ShoppingService {
         return convertShoppingToOutput(shopping);
     }
 
-    public List<ShoppingOutput> list(Pageable page, Shopping shoppingExemplo){
+    public List<ShoppingOutput> list(Pageable page, Shopping shoppingExemplo) {
 
         ExampleMatcher matcher = ExampleMatcher
-                                        .matching()
-                                        .withIgnoreCase()
-                                        .withStringMatcher(StringMatcher.CONTAINING);
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(StringMatcher.CONTAINING);
 
         Example<Shopping> exemplo = Example.of(shoppingExemplo, matcher);
 
         return repository
-                    .findAll(exemplo, page)
-                    .stream()
-                    .map(shopping -> convertShoppingToOutput(shopping))
-                    .toList();
+                .findAll(exemplo, page)
+                .stream()
+                .map(shopping -> convertShoppingToOutput(shopping))
+                .toList();
     }
 
-    public ShoppingOutput read(Long id){
+    public ShoppingOutput read(Long id) {
         Shopping shopping = repository.findById(id).orElse(null);
         return convertShoppingToOutput(shopping);
     }
 
     @Transactional
-    public ShoppingOutput update(Long id, ShoppingInput input){
-        if(repository.existsById(id)){
+    public ShoppingOutput update(Long id, ShoppingInput input) {
+        if (repository.existsById(id)) {
             Shopping shopping = convertInputToShopping(input);
             shopping.setId(id);
             shopping = repository.save(shopping);
             return convertShoppingToOutput(shopping);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private ShoppingOutput convertShoppingToOutput(Shopping shopping){
-        if(shopping == null){
+    private ShoppingOutput convertShoppingToOutput(Shopping shopping) {
+        if (shopping == null) {
             return null;
         }
         ShoppingOutput output = new ShoppingOutput(
-            shopping.getId(), 
-            shopping.getProduct(), 
-            shopping.getTotalPrice(), 
-            shopping.getQuantityProducts()
+                shopping.getId(),
+                shopping.getProduct(),
+                shopping.getTotalPrice(),
+                shopping.getQuantityProducts()
         );
 
         return output;
     }
 
-    private Shopping convertInputToShopping(ShoppingInput input){
+    private Shopping convertInputToShopping(ShoppingInput input) {
         Shopping shopping = new Shopping();
         shopping.setProduct(input.product());
         shopping.setTotalPrice(input.totalPrice());

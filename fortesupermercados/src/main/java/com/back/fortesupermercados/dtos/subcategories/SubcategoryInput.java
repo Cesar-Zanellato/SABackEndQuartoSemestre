@@ -5,8 +5,8 @@ import com.back.fortesupermercados.entities.Category;
 import jakarta.validation.constraints.NotBlank;
 
 public record SubcategoryInput(
+        @NotBlank
+        String name,
+        Category category) {
 
-    @NotBlank
-    String name,
-    Category category
-){}
+}

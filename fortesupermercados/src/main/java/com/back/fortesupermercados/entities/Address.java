@@ -11,17 +11,21 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameStreet;
-    private Integer numberStreet; 
+    private Integer numberStreet;
     private String cep;
     private String pointReference;
     private String complement;
-    
+
     @OneToOne(mappedBy = "address", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private User user;
 }

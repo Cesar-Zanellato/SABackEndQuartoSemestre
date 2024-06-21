@@ -20,41 +20,42 @@ import com.back.fortesupermercados.dtos.deliveries.DeliveryInput;
 import com.back.fortesupermercados.dtos.deliveries.DeliveryOutput;
 import com.back.fortesupermercados.services.DeliveryService;
 
-@RestController @Validated
+@RestController
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/deliveries")
 public class DeliveryController {
-    
+
     @Autowired
     private DeliveryService service;
 
     @GetMapping
-    public ResponseEntity<List<DeliveryOutput>> list(){
+    public ResponseEntity<List<DeliveryOutput>> list() {
         List<DeliveryOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
-    
+
     @PostMapping
-    public ResponseEntity<DeliveryOutput> create(@RequestBody DeliveryInput pedido){
+    public ResponseEntity<DeliveryOutput> create(@RequestBody DeliveryInput pedido) {
         DeliveryOutput saida = service.create(pedido);
         return new ResponseEntity(saida, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DeliveryOutput> read(@PathVariable Long id){
+    public ResponseEntity<DeliveryOutput> read(@PathVariable Long id) {
         DeliveryOutput pedido = service.read(id);
         return ResponseEntity.ok(pedido);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DeliveryOutput> update(@PathVariable Long id, @RequestBody DeliveryInput pedido){
+    public ResponseEntity<DeliveryOutput> update(@PathVariable Long id, @RequestBody DeliveryInput pedido) {
         DeliveryOutput saida = service.update(id, pedido);
         return ResponseEntity.ok(saida);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

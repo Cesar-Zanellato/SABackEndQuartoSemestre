@@ -20,41 +20,42 @@ import com.back.fortesupermercados.dtos.address.AddressInput;
 import com.back.fortesupermercados.dtos.address.AddressOutput;
 import com.back.fortesupermercados.services.AddressService;
 
-@RestController @Validated
+@RestController
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/address")
 public class AddressController {
-    
+
     @Autowired
     private AddressService service;
 
     @GetMapping
-    public ResponseEntity<List<AddressOutput>> list(){
+    public ResponseEntity<List<AddressOutput>> list() {
         List<AddressOutput> list = service.list();
         return ResponseEntity.ok(list);
     }
-    
+
     @PostMapping
-    public ResponseEntity<AddressOutput> create(@RequestBody AddressInput address){
+    public ResponseEntity<AddressOutput> create(@RequestBody AddressInput address) {
         AddressOutput output = service.create(address);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressOutput> read(@PathVariable Long id){
+    public ResponseEntity<AddressOutput> read(@PathVariable Long id) {
         AddressOutput address = service.read(id);
         return ResponseEntity.ok(address);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressOutput> update(@PathVariable Long id, @RequestBody AddressInput address){
+    public ResponseEntity<AddressOutput> update(@PathVariable Long id, @RequestBody AddressInput address) {
         AddressOutput output = service.update(id, address);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

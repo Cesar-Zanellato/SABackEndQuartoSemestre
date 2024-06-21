@@ -15,7 +15,7 @@ import com.back.fortesupermercados.repositories.CategoryRepository;
 
 @Service
 public class CategoryService {
-    
+
     @Autowired
     CategoryRepository categoryRepository;
 
@@ -23,19 +23,17 @@ public class CategoryService {
     private ProductService productService;
 
     @Transactional
-    public CategoryOutput create(CategoryInput input){
+    public CategoryOutput create(CategoryInput input) {
         Category category = convertInputToCategory(input);
         category = categoryRepository.save(category);
-
         return convertCategoryToOutput(category);
     }
 
-    public List<CategoryOutput> list(){
-        return categoryRepository
-        .findAll()
-        .stream()
-        .map(category -> convertCategoryToOutput(category))
-        .toList();
+    public List<CategoryOutput> list() {
+        return categoryRepository.findAll()
+                .stream()
+                .map(this::convertCategoryToOutput)
+                .collect(Collectors.toList());
     }
 
     public List<CategoryOutput> getSubcategoriesByCategoryId(Long categoryId) {
@@ -50,47 +48,42 @@ public class CategoryService {
         return products;
     }
 
-    public CategoryOutput read(Long id){
-        Category category = categoryRepository.findById(id).orElse(null);
-        return convertCategoryToOutput(category);
+    public CategoryOutput read(Long id) {
+        return categoryRepository.findById(id)
+                .map(this::convertCategoryToOutput)
+                .orElse(null);
     }
 
     @Transactional
-    public CategoryOutput update(Long id, CategoryInput input){
-        if(categoryRepository.existsById(id)){
-            Category category = convertInputToCategory(input);
-            category.setId(id);
-            category = categoryRepository.save(category);
-            return convertCategoryToOutput(category);
-        }else{
-            return null;
-        }
+    public CategoryOutput update(Long id, CategoryInput input) {
+        return categoryRepository.findById(id)
+                .map(existingCategory -> {
+                    Category updatedCategory = convertInputToCategory(input);
+                    updatedCategory.setId(id);
+                    updatedCategory = categoryRepository.save(updatedCategory);
+                    return convertCategoryToOutput(updatedCategory);
+                })
+                .orElse(null);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         categoryRepository.deleteById(id);
     }
 
-
-
-
-
-    private CategoryOutput convertCategoryToOutput(Category category){
-        if(category == null){
+    private CategoryOutput convertCategoryToOutput(Category category) {
+        if (category == null) {
             return null;
         }
         CategoryOutput output = new CategoryOutput(
-            category.getId(), 
-            category.getName()
+                category.getId(),
+                category.getName()
         );
-
         return output;
     }
 
-    private Category convertInputToCategory(CategoryInput input){
+    private Category convertInputToCategory(CategoryInput input) {
         Category category = new Category();
         category.setName(input.name());
-
         return category;
     }
 }

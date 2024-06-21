@@ -11,9 +11,10 @@ import com.back.fortesupermercados.infra.security.CustomUserDetails;
 
 @Service
 public class TokenService {
+
     private String secret = "SECRET_TOKEN";
     private Integer expiration = 30;
-    private String issuer = "Forte Supermercados"; 
+    private String issuer = "Forte Supermercados";
 
     public String createToken(UserDetails userDetails) {
         var algoritmo = Algorithm.HMAC256(secret);
@@ -35,7 +36,7 @@ public class TokenService {
         var verifier = JWT.require(algorithm)
                 .withIssuer(issuer)
                 .build();
-        
+
         var decodedJWT = verifier.verify(jwt);
         return decodedJWT.getClaim("id").asLong(); // Recupera o ID do usuário
     }

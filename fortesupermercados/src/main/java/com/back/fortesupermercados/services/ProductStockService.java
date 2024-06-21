@@ -17,67 +17,67 @@ import com.back.fortesupermercados.repositories.ProductStockRepository;
 
 @Service
 public class ProductStockService {
+
     @Autowired
     ProductStockRepository repository;
 
     @Transactional
-    public ProductStockOutput create(ProductStockInput input){
+    public ProductStockOutput create(ProductStockInput input) {
         ProductStock productStock = convertInputToProductStock(input);
         productStock = repository.save(productStock);
 
         return convertProductStockToOutput(productStock);
     }
 
-    public List<ProductStockOutput> list(Pageable page, ProductStock productStockExemplo){
-        
+    public List<ProductStockOutput> list(Pageable page, ProductStock productStockExemplo) {
 
         ExampleMatcher matcher = ExampleMatcher
-                                        .matching()
-                                        .withIgnoreCase()
-                                        .withStringMatcher(StringMatcher.CONTAINING);
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(StringMatcher.CONTAINING);
 
         Example<ProductStock> exemplo = Example.of(productStockExemplo, matcher);
 
         return repository
-        .findAll(exemplo, page)
-        .stream()
-        .map(productStock -> convertProductStockToOutput(productStock))
-        .toList();
+                .findAll(exemplo, page)
+                .stream()
+                .map(productStock -> convertProductStockToOutput(productStock))
+                .toList();
     }
 
-    public ProductStockOutput read(Long id){
+    public ProductStockOutput read(Long id) {
         ProductStock productStock = repository.findById(id).orElse(null);
         return convertProductStockToOutput(productStock);
     }
 
     @Transactional
-    public ProductStockOutput update(Long id, ProductStockInput input){
-        if(repository.existsById(id)){
+    public ProductStockOutput update(Long id, ProductStockInput input) {
+        if (repository.existsById(id)) {
             ProductStock productStock = convertInputToProductStock(input);
             productStock.setId(id);
             productStock = repository.save(productStock);
             return convertProductStockToOutput(productStock);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private ProductStockOutput convertProductStockToOutput(ProductStock productStock){
-        if(productStock == null){
+    private ProductStockOutput convertProductStockToOutput(ProductStock productStock) {
+        if (productStock == null) {
             return null;
         }
         ProductStockOutput output = new ProductStockOutput(
-            productStock.getQuantity()
+                productStock.getQuantity()
         );
 
         return output;
     }
 
-    private ProductStock convertInputToProductStock(ProductStockInput input){
+    private ProductStock convertInputToProductStock(ProductStockInput input) {
         ProductStock productStock = new ProductStock();
         productStock.setQuantity(input.quantity());
 

@@ -17,29 +17,28 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.back.fortesupermercados.services.UserService;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
     private SecurityFilter securityFilter;
-    
+
     @Autowired
     private UserService userService;
 
     @Autowired
     private AutenticacaoEntryPoint autenticacaoEntryPoint;
-    
+
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public AuthenticationManager getAutheticationManager(
-        AuthenticationConfiguration config
-    ) throws Exception{
+            AuthenticationConfiguration config
+    ) throws Exception {
         return config.getAuthenticationManager();
     }
 
@@ -49,51 +48,47 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(request ->
-                request
-                    .requestMatchers("/shopping", "/address")
-                    .hasRole("USER")
-
-                    .requestMatchers(HttpMethod.POST , "users", "login")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.GET , "users")
-                    .permitAll()
-
-                    .requestMatchers("/delivery")
-                    .permitAll()
-                    .requestMatchers(
-                        "/v3/api-docs/*",
-                        "/v3/*",
-                        "/swagger-ui.html",
-                        "/swagger-ui/*"
-                    )
-                    .permitAll()
-
-                    .requestMatchers(HttpMethod.POST, "/category", "/subcategory", "/product")
-                    .hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.PUT, "/category", "/subcategory", "/product")
-                    .hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/category", "/subcategory", "/product", "/shopping", "/address")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.DELETE, "/category", "/subcategory", "/product", "delivery")
-                    .hasRole("ADMIN")
-        
-                    .anyRequest()
-                    .authenticated()
-            )
-            .addFilterBefore(
-            securityFilter,
-            UsernamePasswordAuthenticationFilter.class
-            )
-            .exceptionHandling(handling -> {
-            handling.authenticationEntryPoint(autenticacaoEntryPoint);
-            handling.accessDeniedHandler(this.getAccessDeniedHandler());
-            })
-            .build();
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(request
+                        -> request
+                        .requestMatchers("/shopping", "/address")
+                        .hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "users", "login")
+                        .permitAll()
+                        .requestMatchers(HttpMethod.GET, "users")
+                        .permitAll()
+                        .requestMatchers("/delivery")
+                        .permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs/*",
+                                "/v3/*",
+                                "/swagger-ui.html",
+                                "/swagger-ui/*"
+                        )
+                        .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/category", "/subcategory", "/product")
+                        .hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/category", "/subcategory", "/product")
+                        .hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/category", "/subcategory", "/product", "/shopping", "/address")
+                        .permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/category", "/subcategory", "/product", "delivery")
+                        .hasRole("ADMIN")
+                        .anyRequest()
+                        .authenticated()
+                )
+                .addFilterBefore(
+                        securityFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                )
+                .exceptionHandling(handling -> {
+                    handling.authenticationEntryPoint(autenticacaoEntryPoint);
+                    handling.accessDeniedHandler(this.getAccessDeniedHandler());
+                })
+                .build();
 
     }
 }

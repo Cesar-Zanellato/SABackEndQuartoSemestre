@@ -22,7 +22,7 @@ import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.services.ProductService;
 
-@RestController 
+@RestController
 @Validated
 @CrossOrigin("*")
 @RequestMapping("/products")
@@ -32,14 +32,14 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductOutput> create(@RequestBody ProductInput product){
+    public ResponseEntity<ProductOutput> create(@RequestBody ProductInput product) {
         ProductOutput output = productService.create(product);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
-    
+
     @GetMapping
-    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example){
+    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example) {
         List<ProductOutput> list = productService.list(page, example);
         return ResponseEntity.ok(list);
     }
@@ -51,19 +51,19 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductOutput> read(@PathVariable Long id){
+    public ResponseEntity<ProductOutput> read(@PathVariable Long id) {
         ProductOutput product = productService.read(id);
         return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductOutput> update(@PathVariable Long id, @RequestBody ProductInput product){
+    public ResponseEntity<ProductOutput> update(@PathVariable Long id, @RequestBody ProductInput product) {
         ProductOutput output = productService.update(id, product);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }

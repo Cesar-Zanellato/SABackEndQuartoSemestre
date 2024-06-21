@@ -22,7 +22,8 @@ import com.back.fortesupermercados.dtos.shopping.ShoppingOutput;
 import com.back.fortesupermercados.entities.Shopping;
 import com.back.fortesupermercados.services.ShoppingService;
 
-@RestController @Validated
+@RestController
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/shopping")
 public class ShoppingController {
@@ -31,32 +32,32 @@ public class ShoppingController {
     private ShoppingService service;
 
     @GetMapping
-    public ResponseEntity<List<ShoppingOutput>> list(Pageable page, Shopping example){
+    public ResponseEntity<List<ShoppingOutput>> list(Pageable page, Shopping example) {
         List<ShoppingOutput> list = service.list(page, example);
         return ResponseEntity.ok(list);
     }
-    
+
     @PostMapping
-    public ResponseEntity<ShoppingOutput> create(@RequestBody ShoppingInput shopping){
+    public ResponseEntity<ShoppingOutput> create(@RequestBody ShoppingInput shopping) {
         ShoppingOutput output = service.create(shopping);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShoppingOutput> read(@PathVariable Long id){
+    public ResponseEntity<ShoppingOutput> read(@PathVariable Long id) {
         ShoppingOutput shopping = service.read(id);
         return ResponseEntity.ok(shopping);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ShoppingOutput> update(@PathVariable Long id, @RequestBody ShoppingInput shopping){
+    public ResponseEntity<ShoppingOutput> update(@PathVariable Long id, @RequestBody ShoppingInput shopping) {
         ShoppingOutput output = service.update(id, shopping);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

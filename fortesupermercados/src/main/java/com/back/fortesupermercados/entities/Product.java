@@ -13,21 +13,23 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String valueSale; 
+    private String valueSale;
     private String promotion;
     private String image;
     private String amount;
 
-
     @ManyToOne
     private Category category;
-
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id", nullable = false)

@@ -28,26 +28,26 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 @Order(-999)
 public class LogFilter extends OncePerRequestFilter {
 
-  @Override
-  protected void doFilterInternal(
-    HttpServletRequest request,
-    HttpServletResponse response,
-    FilterChain filterChain
-  ) throws IOException, ServletException {
-    
-    ContentCachingRequestWrapper req = new ContentCachingRequestWrapper(request);
-    ContentCachingResponseWrapper resp = new ContentCachingResponseWrapper(response);
+    @Override
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws IOException, ServletException {
 
-    filterChain.doFilter(req, resp);
-    
-    byte[] responseBody = resp.getContentAsByteArray();
-    byte[] requestBody = req.getContentAsByteArray();
+        ContentCachingRequestWrapper req = new ContentCachingRequestWrapper(request);
+        ContentCachingResponseWrapper resp = new ContentCachingResponseWrapper(response);
 
-    log.info("Request\n METHOD: {} | URI: {} | PORT: {}", req.getMethod(), req.getRequestURI(), req.getLocalPort());
-    
-    log.info("Response\n STATUS: {}\n BODY:{}", resp.getStatus(), new String(responseBody, StandardCharsets.UTF_8));
-    log.info("Response BODY: {}", new String(requestBody, StandardCharsets.UTF_8));
-    
-    resp.copyBodyToResponse();
-  }
+        filterChain.doFilter(req, resp);
+
+        byte[] responseBody = resp.getContentAsByteArray();
+        byte[] requestBody = req.getContentAsByteArray();
+
+        log.info("Request\n METHOD: {} | URI: {} | PORT: {}", req.getMethod(), req.getRequestURI(), req.getLocalPort());
+
+        log.info("Response\n STATUS: {}\n BODY:{}", resp.getStatus(), new String(responseBody, StandardCharsets.UTF_8));
+        log.info("Response BODY: {}", new String(requestBody, StandardCharsets.UTF_8));
+
+        resp.copyBodyToResponse();
+    }
 }

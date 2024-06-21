@@ -21,22 +21,23 @@ import com.back.fortesupermercados.dtos.subcategories.SubcategoryInput;
 import com.back.fortesupermercados.dtos.subcategories.SubcategoryOutput;
 import com.back.fortesupermercados.services.SubcategoryService;
 
-@RestController @Validated
+@RestController
+@Validated
 @CrossOrigin("*")
 @RequestMapping("/subcategories")
 public class SubcategoryController {
-     
+
     @Autowired
     private SubcategoryService subcategoryService;
 
     @GetMapping
-    public ResponseEntity<List<SubcategoryOutput>> list(){
+    public ResponseEntity<List<SubcategoryOutput>> list() {
         List<SubcategoryOutput> list = subcategoryService.list();
         return ResponseEntity.ok(list);
     }
-    
+
     @PostMapping
-    public ResponseEntity<SubcategoryOutput> create(@RequestBody SubcategoryInput subcategory){
+    public ResponseEntity<SubcategoryOutput> create(@RequestBody SubcategoryInput subcategory) {
         SubcategoryOutput output = subcategoryService.create(subcategory);
         return new ResponseEntity(output, HttpStatus.CREATED);
 
@@ -49,19 +50,19 @@ public class SubcategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubcategoryOutput> read(@PathVariable Long id){
+    public ResponseEntity<SubcategoryOutput> read(@PathVariable Long id) {
         SubcategoryOutput subcategory = subcategoryService.read(id);
         return ResponseEntity.ok(subcategory);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubcategoryOutput> update(@PathVariable Long id, @RequestBody SubcategoryInput subcategory){
+    public ResponseEntity<SubcategoryOutput> update(@PathVariable Long id, @RequestBody SubcategoryInput subcategory) {
         SubcategoryOutput output = subcategoryService.update(id, subcategory);
         return ResponseEntity.ok(output);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         subcategoryService.delete(id);
         return ResponseEntity.noContent().build();
     }

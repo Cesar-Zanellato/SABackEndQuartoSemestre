@@ -17,65 +17,66 @@ import com.back.fortesupermercados.infra.security.CustomUserDetails;
 import com.back.fortesupermercados.repositories.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
+
     @Autowired
     private UserRepository repository;
 
     @Transactional
-    public UserOutput create(UserInput input){
+    public UserOutput create(UserInput input) {
         User user = convertInputToUser(input);
         user = repository.save(user);
         return convertUserToOutput(user);
     }
 
-    public List<UserOutput> list(){
+    public List<UserOutput> list() {
         return repository
-        .findAll()
-        .stream()
-        .map(user -> convertUserToOutput(user))
-        .toList();
+                .findAll()
+                .stream()
+                .map(user -> convertUserToOutput(user))
+                .toList();
     }
 
-    public UserOutput read(Long id){
+    public UserOutput read(Long id) {
         User user = repository.findById(id).orElse(null);
         return convertUserToOutput(user);
     }
 
     @Transactional
-    public UserOutput update(Long id, UserInput input){
-        if(repository.existsById(id)){
+    public UserOutput update(Long id, UserInput input) {
+        if (repository.existsById(id)) {
             User user = convertInputToUser(input);
             user.setId(id);
             user = repository.save(user);
             return convertUserToOutput(user);
-        }else{
+        } else {
             return null;
         }
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private UserOutput convertUserToOutput(User user){
-        if(user == null){
+    private UserOutput convertUserToOutput(User user) {
+        if (user == null) {
             return null;
         }
         UserOutput output = new UserOutput(
-            user.getId(), 
-            user.getName(),
-            user.getEmail(), 
-            user.getPhone(), 
-            user.getCpf(), 
-            user.getAddress(),
-            user.getIsAdmin()
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getCpf(),
+                user.getAddress(),
+                user.getIsAdmin()
         );
 
         return output;
     }
 
-    private User convertInputToUser(UserInput input){
+    private User convertInputToUser(UserInput input) {
         User user = new User();
         user.setName(input.name());
         user.setEmail(input.email());
@@ -89,16 +90,16 @@ public class UserService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    User user = repository.findByEmail(email);
-    if (user == null) {
-        throw new UsernameNotFoundException("User not found");
-    }
+        User user = repository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
-    return new CustomUserDetails(
-            user.getId(),
-            user.getUsername(),
-            user.getPassword(),
-            user.getAuthorities()
-    );
-}
+        return new CustomUserDetails(
+                user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getAuthorities()
+        );
+    }
 }

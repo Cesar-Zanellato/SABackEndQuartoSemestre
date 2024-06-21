@@ -9,9 +9,9 @@ import com.back.fortesupermercados.data.DataLoader;
 @SpringBootApplication
 public class FortesupermercadosApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FortesupermercadosApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FortesupermercadosApplication.class, args);
+    }
 
     public ApplicationRunner dataLoaderRunner(DataLoader dataLoader) {
         return args -> {
