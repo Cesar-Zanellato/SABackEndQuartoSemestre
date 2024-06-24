@@ -15,17 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.back.fortesupermercados.services.UserService;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
     private SecurityFilter securityFilter;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private AutenticacaoEntryPoint autenticacaoEntryPoint;
@@ -54,31 +49,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request
                         -> request
-                        .requestMatchers("/shopping", "/address")
-                        .hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "users", "login")
-                        .permitAll()
-                        .requestMatchers(HttpMethod.GET, "users")
-                        .permitAll()
-                        .requestMatchers("/delivery")
-                        .permitAll()
-                        .requestMatchers(
-                                "/v3/api-docs/*",
-                                "/v3/*",
-                                "/swagger-ui.html",
-                                "/swagger-ui/*"
-                        )
-                        .permitAll()
-                        .requestMatchers(HttpMethod.POST, "/category", "/subcategory", "/product")
-                        .hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/category", "/subcategory", "/product")
-                        .hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/category", "/subcategory", "/product", "/shopping", "/address")
-                        .permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/category", "/subcategory", "/product", "delivery")
-                        .hasRole("ADMIN")
-                        .anyRequest()
-                        .authenticated()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/categories", "/subcategories", "/products").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/categories", "/subcategories", "/products").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/categories", "/subcategories", "/products", "/deliveries").hasRole("ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(
                         securityFilter,
