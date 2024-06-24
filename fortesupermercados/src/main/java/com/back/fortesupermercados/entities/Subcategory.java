@@ -6,9 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,8 +23,10 @@ public class Subcategory {
     private Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_category_id")
-    private Category parentCategory;
+    @OneToMany(mappedBy = "subcategory")
+    private List<Product> products;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

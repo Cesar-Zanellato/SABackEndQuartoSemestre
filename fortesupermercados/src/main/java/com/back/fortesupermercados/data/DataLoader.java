@@ -85,7 +85,7 @@ public class DataLoader implements ApplicationRunner{
                 for (String subcategoryName : subcategories) {
                     Subcategory subcategory = new Subcategory();
                     subcategory.setName(subcategoryName);
-                    subcategory.setParentCategory(category);
+                    subcategory.setCategory(category);
                     subcategoryRepository.save(subcategory);
                     subcategoryMap.put(subcategoryName, subcategory);
                 }
@@ -100,7 +100,7 @@ public class DataLoader implements ApplicationRunner{
             new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ACUCAR"), null),
             
             new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parboilizado Urbano 5kg", "39,32", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Parboilizado Urbano 5kg", "39.32", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Branco Tio João 1kg", "11.34", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 2kg", "16.68", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
@@ -108,12 +108,12 @@ public class DataLoader implements ApplicationRunner{
             new Product(null, "Arroz Branco Kika 1kg", "7.82", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Branco Kika 5kg", "38.94", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("ARROZ"), null),
             
-            new Product(null, "Azeite Terrano Extra Virgem 500ml", "55,64", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Azeite Terrano Extra Virgem 500ml", "55.64", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Azeite de Oliva Tipo Unico Gallo 500ml", "66.21", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Azeite Andorinha 500ml", "66.77", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Azeite Dende Cepera 100ml", "15.42", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Azeite de Dendê Hemmer Vidro 200ml", "24.35", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Óleo de Soja Coamo 900ml", "7,02", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Óleo de Soja Coamo 900ml", "7.02", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Vinagre de Álcool Heinig 900ml", "3.52", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("AZEITE"), null),
             
             new Product(null, "Farinha de Trigo Orquídea 1kg", "5.34", null, null, "Un", categoryMap.get("ALIMENTOSBASICOS"), subcategoryMap.get("FARINHA"), null),

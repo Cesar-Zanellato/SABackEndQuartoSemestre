@@ -15,7 +15,7 @@ import com.back.fortesupermercados.dtos.products.ProductInput;
 import com.back.fortesupermercados.dtos.products.ProductOutput;
 import com.back.fortesupermercados.entities.Product;
 import com.back.fortesupermercados.repositories.ProductRepository;
-import com.back.fortesupermercados.repositories.ProductStockRepository;
+// import com.back.fortesupermercados.repositories.ProductStockRepository;
 
 @Service
 public class ProductService {
@@ -23,8 +23,8 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    @Autowired
-    ProductStockRepository repositoryStock;
+    // @Autowired
+    // ProductStockRepository repositoryStock;
 
     @Transactional
     public ProductOutput create(ProductInput input) {

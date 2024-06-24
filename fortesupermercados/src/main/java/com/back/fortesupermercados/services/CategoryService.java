@@ -36,8 +36,8 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    public List<CategoryOutput> getSubcategoriesByCategoryId(Long categoryId) {
-        List<Category> subcategories = categoryRepository.findByParentCategoryId(categoryId);
+    public List<CategoryOutput> getSubcategoriesByCategoryId(Long subcategoryId) {
+        List<Category> subcategories = categoryRepository.findBySubcategory_Id(subcategoryId);
         return subcategories.stream()
                 .map(this::convertCategoryToOutput)
                 .collect(Collectors.toList());
