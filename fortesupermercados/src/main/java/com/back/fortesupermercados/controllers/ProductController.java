@@ -39,8 +39,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductOutput>> list(Pageable page, Product example) {
-        List<ProductOutput> list = productService.list(page, example);
+    public ResponseEntity<List<Product>> list() {
+        List<Product> list = productService.list();
         return ResponseEntity.ok(list);
     }
 
