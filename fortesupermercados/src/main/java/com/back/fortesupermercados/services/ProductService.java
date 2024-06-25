@@ -97,8 +97,7 @@ public class ProductService {
                 product.getValueSale(),
                 product.getPromotion(),
                 product.getImage(),
-                product.getAmount(),
-                product.getProductStock()
+                product.getAmount()
         );
 
         return output;
