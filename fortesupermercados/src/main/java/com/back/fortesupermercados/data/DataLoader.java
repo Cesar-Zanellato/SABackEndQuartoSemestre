@@ -93,20 +93,20 @@ public class DataLoader implements ApplicationRunner{
         }
 
         List<Product> products = List.of(
-            new Product(null, "Açúcar União Refinado 1kg", "6.67", null, "Acucar_Uniao_Refinado_1kg.png", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Demerara Naturale União 1kg", "8.24", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10.70", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar União Refinado 1kg", "6.67", null, "Acucar_Uniao_Refinado_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, "Acucar_Refinado_Alto_Alegre_Pacote_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Demerara Naturale União 1kg", "8.24", null, "Acucar_Demerara_Naturale_Uniao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10.70", null, "Acucar_Cristal_Alto_Alegre_Pacote_2kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, "Acucar_Refinado_Caravelas_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
             
-            new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parboilizado Urbano 5kg", "39.32", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Branco Tio João 1kg", "11.34", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 2kg", "16.68", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Branco Kika 1kg", "7.82", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Branco Kika 5kg", "38.94", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", null, "Arroz_Tipo_1_Parboilizado_Urbano_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Parboilizado Urbano 5kg", "39.32", null, "Arroz_Parboilizado_Urbano_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Branco Tio João 1kg", "11.34", null, "Arroz_Branco_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, "Arroz_Parbolizado_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 1kg", "16.68", null, "Arroz_Branco_Tipo_1_Tio_Urbano_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", null, "Arroz_Parboilizado_Kika_Embalagem_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Branco Kika 1kg", "7.82", null, "Arroz_Branco_Kika_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Arroz Branco Kika 5kg", "38.94", null, "Arroz_Branco_Kika_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
             
             new Product(null, "Azeite Terrano Extra Virgem 500ml", "55.64", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
             new Product(null, "Azeite de Oliva Tipo Unico Gallo 500ml", "66.21", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
