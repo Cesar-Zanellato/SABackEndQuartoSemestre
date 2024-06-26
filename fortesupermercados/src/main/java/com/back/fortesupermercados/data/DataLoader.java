@@ -91,59 +91,53 @@ public class DataLoader implements ApplicationRunner{
                 }
             }
         }
-
+        
         List<Product> products = List.of(
             new Product(null, "Açúcar União Refinado 1kg", "6.67", null, "Acucar_Uniao_Refinado_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, "Acucar_Refinado_Alto_Alegre_Pacote_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Demerara Naturale União 1kg", "8.24", null, "Acucar_Demerara_Naturale_Uniao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10.70", null, "Acucar_Cristal_Alto_Alegre_Pacote_2kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, "Acucar_Refinado_Caravelas_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
             
-            new Product(null, "Arroz Tipo 1 Parboilizado Urbano 1kg", "6.81", null, "Arroz_Tipo_1_Parboilizado_Urbano_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parboilizado Urbano 5kg", "39.32", null, "Arroz_Parboilizado_Urbano_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Farinha de Mandioca Yoki 500g", "10.59", null, "Farinha_de_Mandioca_Torrada_Yoki_Pacote_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
             new Product(null, "Arroz Branco Tio João 1kg", "11.34", null, "Arroz_Branco_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, "Arroz_Parbolizado_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Massa com Ovos Parafuso Barilla 500g", "5.56", null, "Macarrao_Parafuso_Orquidea_Semola_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("MASSAS"), null),
+            new Product(null, "Açúcar Cristal Alto Alegre Pacote 2kg", "10.70", null, "Acucar_Cristal_Alto_Alegre_Pacote_2kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Arroz Branco Kika 1kg", "7.82", null, "Arroz_Branco_Kika_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            
+            new Product(null, "Azeite Terrano Extra Virgem 500ml", "55.64", null, "Azeite_Terrano_Extra_Virgem_500ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Arroz Branco Kika 5kg", "38.94", null, "Arroz_Branco_Kika_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Azeite de Oliva Tipo Unico Gallo 500ml", "66.21", null, "Azeite_de_Oliva_Tipo_Unico_Gallo_500ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Azeite Andorinha 500ml", "66.77", null, "Azeite_Andorinha_500ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Azeite Dende Cepera 100ml", "15.42", null, "Azeite_Dende_Cepera_100ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Azeite de Dendê Hemmer Vidro 200ml", "24.35", null, "Azeite_de_Dende_Hemmer_Vidro_200ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Óleo de Soja Coamo 900ml", "7.02", null, "Oleo_de_Soja_Coamo_900ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Açúcar Refinado Caravelas 5kg", "35.79", null, "Acucar_Refinado_Caravelas_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Vinagre de Álcool Heinig 900ml", "3.52", null, "Vinagre_de_Alcool_Heinig_900ml", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            
+            new Product(null, "Farinha de Trigo Orquídea 1kg", "5.34", null, "Farinha_de_Trigo_Orquidea_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
+            new Product(null, "Farinha de Arroz Urbano 1kg", "8.14", null, "Farinha_de_Arroz_Urbano_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
+            new Product(null, "Farinha de Rosca Marsala 500g", "10.45", null, "Farinha_de_Rosca_Marsala_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
+            new Product(null, "Açúcar Demerara Naturale União 1kg", "8.24", null, "Acucar_Demerara_Naturale_Uniao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            
             new Product(null, "Arroz Tipo 1 Tio Urbano Embalagem 1kg", "16.68", null, "Arroz_Branco_Tipo_1_Tio_Urbano_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", null, "Arroz_Parboilizado_Kika_Embalagem_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Branco Kika 1kg", "7.82", null, "Arroz_Branco_Kika_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
-            new Product(null, "Arroz Branco Kika 5kg", "38.94", null, "Arroz_Branco_Kika_5kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
+            new Product(null, "Farofa de Soja Pinduca Embalagem 250g", "5.13", null, "Farofa_de_Soja_Pinduca_Embalagem_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa de Milho Pinduca 400g", "7.23", null, "Farofa_de_Milho_Pinduca_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Suave 250g", "5.51", null, "Farofa_Kanty_Suave_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Calabresa 250g", "5.51", null, "Farofa_Kanty_Calabresa_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Picanha 250g", "5.51", null, "Farofa_Kanty_Picanha_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
             
-            new Product(null, "Azeite Terrano Extra Virgem 500ml", "55.64", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Azeite de Oliva Tipo Unico Gallo 500ml", "66.21", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Azeite Andorinha 500ml", "66.77", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Azeite Dende Cepera 100ml", "15.42", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Azeite de Dendê Hemmer Vidro 200ml", "24.35", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Óleo de Soja Coamo 900ml", "7.02", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
-            new Product(null, "Vinagre de Álcool Heinig 900ml", "3.52", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("AZEITE"), null),
+            new Product(null, "Feijão Preto Rico Caldo 1kg", "7.67", null, "Feijao_Preto_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Carioca Rico Caldo 1kg", "10.03", null, "Feijao_Carioca_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Vermelho Rico Caldo 1kg", "14.79", null, "Feijao_Vermelho_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Branco Sinhá 500g", "13.70", null, "Feijao_Branco_Sinha_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
             
-            new Product(null, "Farinha de Trigo Orquídea 1kg", "5.34", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
-            new Product(null, "Farinha de Milho Flocão Kimilho Yoki 500g", "7.23", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
-            new Product(null, "Farinha de Mandioca Torrada Yoki Pacote 500g", "10.59", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
-            new Product(null, "Farinha de Arroz Urbano 1kg", "8.14", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
-            new Product(null, "Farinha de Rosca Marsala 500g", "10.45", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FARINHA"), null),
+            new Product(null, "Milho para Pipoca Kanty 400g", "4.04", null, "Milho_para_Pipoca_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Canjica Branca Kanty 400g", "6.56", null, "Canjica_Branca_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, "Acucar_Refinado_Alto_Alegre_Pacote_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Milho para Pipoca Tipo 1 Pacote Yoki 400g", "6.14", null, "Milho_para_Pipoca_Tipo_1_Pacote_Yoki_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Canjica Amarela Yoki 500g", "10.03", null, "Canjica_Amarela_Yoki_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Lentilha Canadense Kanty 400g", "10.70", null, "Lentilha_Canadense_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Lentilha Yoki 500g", "11.24", null, "Lentilha_Yoki_500", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
             
-            new Product(null, "Farofa de Mandioca Tradicional Yoki 400g", "10.59", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa de Soja Pinduca Embalagem 250g", "5.13", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa de Milho Pinduca 400g", "7.23", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Suave 250g", "5.51", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Calabresa 250g", "5.51", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Picanha 250g", "5.51", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            
-            new Product(null, "Feijão Preto Rico Caldo 1kg", "7.67", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Carioca Rico Caldo 1kg", "10.03", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Vermelho Rico Caldo 1kg", "14.79", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Branco Sinhá 500g", "13.70", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            
-            new Product(null, "Milho para Pipoca Kanty 400g", "4.04", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Canjica Branca Kanty 400g", "6.56", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Milho para Pipoca Tipo 1 Pacote Yoki 400g", "6.14", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Canjica Amarela Yoki 500g", "10.03", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Lentilha Canadense Kanty 400g", "10.70", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Lentilha Yoki 500g", "11.24", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Grão de Bico Vapza Cozido a Vapor Caixa 500g", "17.80", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            
-            new Product(null, "Massa com Ovos Parafuso Barilla 500g", "5.56", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("MASSAS"), null),
-            new Product(null, "Massa com Ovos Linguine Barilla 500g", "7.02", null, null, "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("MASSAS"), null)
+            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, "Arroz_Parbolizado_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null)
         );
 
         productRepository.saveAll(products);
