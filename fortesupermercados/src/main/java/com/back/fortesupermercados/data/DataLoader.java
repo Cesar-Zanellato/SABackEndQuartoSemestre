@@ -120,24 +120,24 @@ public class DataLoader implements ApplicationRunner{
             new Product(null, "Arroz Parboilizado Kika Embalagem 1kg", "7.34", null, "Arroz_Parboilizado_Kika_Embalagem_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null),
             new Product(null, "Farofa de Soja Pinduca Embalagem 250g", "5.13", null, "Farofa_de_Soja_Pinduca_Embalagem_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
             new Product(null, "Farofa de Milho Pinduca 400g", "7.23", null, "Farofa_de_Milho_Pinduca_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Suave 250g", "5.51", null, "Farofa_Kanty_Suave_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Calabresa 250g", "5.51", null, "Farofa_Kanty_Calabresa_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
-            new Product(null, "Farofa Kanty Picanha 250g", "5.51", null, "Farofa_Kanty_Picanha_250g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Suave 250g", "5.51", null, "Farofa_Kanty_Suave_250g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Calabresa 250g", "5.51", null, "Farofa_Kanty_Calabresa_250g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FAROFA"), null),
+            new Product(null, "Farofa Kanty Picanha 250g", "5.51", null, "Farofa_Kanty_Picanha_250g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FAROFA"), null),
             
-            new Product(null, "Feijão Preto Rico Caldo 1kg", "7.67", null, "Feijao_Preto_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Carioca Rico Caldo 1kg", "10.03", null, "Feijao_Carioca_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Vermelho Rico Caldo 1kg", "14.79", null, "Feijao_Vermelho_Rico_Caldo_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
-            new Product(null, "Feijão Branco Sinhá 500g", "13.70", null, "Feijao_Branco_Sinha_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Preto Rico Caldo 1kg", "7.67", null, "Feijao_Preto_Rico_Caldo_1kg", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Carioca Rico Caldo 1kg", "10.03", null, "Feijao_Carioca_Rico_Caldo_1kg", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Vermelho Rico Caldo 1kg", "14.79", null, "Feijao_Vermelho_Rico_Caldo_1kg", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FEIJAO"), null),
+            new Product(null, "Feijão Branco Sinhá 500g", "13.70", null, "Feijao_Branco_Sinha_500g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("FEIJAO"), null),
             
-            new Product(null, "Milho para Pipoca Kanty 400g", "4.04", null, "Milho_para_Pipoca_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Canjica Branca Kanty 400g", "6.56", null, "Canjica_Branca_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, "Acucar_Refinado_Alto_Alegre_Pacote_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ACUCAR"), null),
-            new Product(null, "Milho para Pipoca Tipo 1 Pacote Yoki 400g", "6.14", null, "Milho_para_Pipoca_Tipo_1_Pacote_Yoki_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Canjica Amarela Yoki 500g", "10.03", null, "Canjica_Amarela_Yoki_500g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Lentilha Canadense Kanty 400g", "10.70", null, "Lentilha_Canadense_Kanty_400g", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
-            new Product(null, "Lentilha Yoki 500g", "11.24", null, "Lentilha_Yoki_500", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Milho para Pipoca Kanty 400g", "4.04", null, "Milho_para_Pipoca_Kanty_400g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Canjica Branca Kanty 400g", "6.56", null, "Canjica_Branca_Kanty_400g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Açúcar Refinado Alto Alegre Pacote 1kg", "5.55", null, "Acucar_Refinado_Alto_Alegre_Pacote_1kg", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("ACUCAR"), null),
+            new Product(null, "Milho para Pipoca Tipo 1 Pacote Yoki 400g", "6.14", null, "Milho_para_Pipoca_Tipo_1_Pacote_Yoki_400g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Canjica Amarela Yoki 500g", "10.03", null, "Canjica_Amarela_Yoki_500g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Lentilha Canadense Kanty 400g", "10.70", null, "Lentilha_Canadense_Kanty_400g", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
+            new Product(null, "Lentilha Yoki 500g", "11.24", null, "Lentilha_Yoki_500", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("GRAOS"), null),
             
-            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, "Arroz_Parbolizado_Tio_Joao_1kg", "Un", categoryMap.get("ALIMENTOS_BASICOS"), subcategoryMap.get("ARROZ"), null)
+            new Product(null, "Arroz Parbolizado Tio João 1kg", "10.59", null, "Arroz_Parbolizado_Tio_Joao_1kg", "Un", categoryMap.get("MATINAIS"), subcategoryMap.get("ARROZ"), null)
         );
 
         productRepository.saveAll(products);
