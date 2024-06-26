@@ -53,7 +53,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/users/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/categories/**", "/subcategories/**", "/products/**", "/products").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/categories/**", "/subcategories/**", "/product").permitAll()
                         .requestMatchers(HttpMethod.POST, "/categories", "/subcategories", "/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/categories", "/subcategories", "/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/categories", "/subcategories", "/products", "/deliveries").hasRole("ADMIN")

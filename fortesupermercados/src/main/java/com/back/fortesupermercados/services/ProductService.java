@@ -33,26 +33,24 @@ public class ProductService {
         return convertProductToOutput(product);
     }
 
-    // public List<ProductOutput> list(Pageable page, Product productExemplo) {
+    public List<ProductOutput> list(Pageable page, Product productExemplo) {
 
-    //     ExampleMatcher matcher = ExampleMatcher
-    //             .matching()
-    //             .withIgnoreCase()
-    //             .withStringMatcher(StringMatcher.CONTAINING);
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(StringMatcher.CONTAINING);
 
-    //     Example<Product> exemplo = Example.of(productExemplo, matcher);
+        Example<Product> exemplo = Example.of(productExemplo, matcher);
 
-    //     return productRepository
-    //             .findAll(exemplo, page)
-    //             .stream()
-    //             .filter(product -> product.getProductStock() != null && product.getProductStock().getQuantity() > 0)
-    //             .map(product -> convertProductToOutput(product))
-    //             .toList();
-    // }
-
-    public List<Product> list(){
-        return productRepository.findAll();
+        return productRepository
+                .findAll(exemplo, page)
+                .stream()
+                .filter(product -> product.getProductStock() != null && product.getProductStock().getQuantity() > 0)
+                .map(product -> convertProductToOutput(product))
+                .toList();
     }
+
+    
 
     @Transactional
     public List<ProductOutput> getProductsByCategoryId(Long categoryId) {
